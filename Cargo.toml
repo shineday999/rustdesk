@@ -52,6 +52,7 @@ screencapturekit = ["cpal/screencapturekit"]
 [dependencies]
 async-trait = "0.1"
 scrap = { path = "libs/scrap", features = ["wayland"] }
+# TODO(OX Desk fork): requires github.com/ox-desk/hbb_common public mirror
 hbb_common = { path = "libs/hbb_common", features = ["webrtc"] }
 base = { path = "libs/base" }
 serde_derive = "1.0"
@@ -267,6 +268,7 @@ winapi = { version = "0.3", features = [ "winnt", "pdh", "synchapi" ] }
 
 [build-dependencies]
 cc = "1.0"
+# TODO(OX Desk fork): requires github.com/ox-desk/hbb_common public mirror
 hbb_common = { path = "libs/hbb_common" }
 os-version = "0.2"
 
