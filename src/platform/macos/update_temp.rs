@@ -19,7 +19,7 @@ fn get_update_temp_dir() -> PathBuf {
 fn new_update_temp_dir() -> PathBuf {
     let euid = unsafe { hbb_common::libc::geteuid() };
     Path::new("/tmp").join(format!(
-        ".rustdeskupdate-{}-{}-{}",
+        ".ox-deskupdate-{}-{}-{}",
         euid,
         std::process::id(),
         hbb_common::rand::random::<u64>()
@@ -28,12 +28,12 @@ fn new_update_temp_dir() -> PathBuf {
 
 fn legacy_update_temp_dir() -> PathBuf {
     let euid = unsafe { hbb_common::libc::geteuid() };
-    Path::new("/tmp").join(format!(".rustdeskupdate-{}", euid))
+    Path::new("/tmp").join(format!(".ox-deskupdate-{}", euid))
 }
 
 fn stale_update_temp_dir_prefix() -> String {
     let euid = unsafe { hbb_common::libc::geteuid() };
-    format!(".rustdeskupdate-{}-", euid)
+    format!(".ox-deskupdate-{}-", euid)
 }
 
 fn is_stale_update_temp_dir_name(name: &str) -> bool {
@@ -192,7 +192,7 @@ mod tests {
     #[test]
     fn temp_dir_cleanup_does_not_follow_symlink() {
         let test_dir = std::env::temp_dir().join(format!(
-            "rustdesk-macos-cleanup-symlink-test-{}-{}",
+            "ox-desk-macos-cleanup-symlink-test-{}-{}",
             std::process::id(),
             hbb_common::rand::random::<u64>()
         ));
@@ -213,7 +213,7 @@ mod tests {
     #[test]
     fn update_temp_dir_rejects_symlink() {
         let test_dir = std::env::temp_dir().join(format!(
-            "rustdesk-macos-temp-dir-symlink-test-{}-{}",
+            "ox-desk-macos-temp-dir-symlink-test-{}-{}",
             std::process::id(),
             hbb_common::rand::random::<u64>()
         ));

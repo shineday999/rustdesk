@@ -37,7 +37,7 @@ Exemple de reprezentare a comunității includ utilizarea unei adrese de e-mail 
 
 ## Aplicare
 
-Cazurile de comportament abuziv, hărțuitor sau altfel inacceptabil pot fi raportate liderilor comunității responsabili pentru aplicare la [info@rustdesk.com](mailto:info@rustdesk.com).  
+Cazurile de comportament abuziv, hărțuitor sau altfel inacceptabil pot fi raportate liderilor comunității responsabili pentru aplicare la [info@ox-desk.com](mailto:info@ox-desk.com).  
 Toate plângerile vor fi revizuite și investigate prompt și corect.
 
 Toți liderii comunității sunt obligați să respecte confidențialitatea și securitatea persoanei care raportează orice incident.

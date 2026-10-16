@@ -1,11 +1,11 @@
-# Contribuzione a RustDesk
+# Contribuzione a OX Desk
 
-RustDesk accoglie con favore il contributo di tutti.
+OX Desk accoglie con favore il contributo di tutti.
 Ecco le linee guida se stai pensando di aiutarci.
 
 ## Contribuzione
 
-I contributi a RustDesk o alle sue dipendenze dovrebbero essere forniti sotto forma di richieste pull GitHub. 
+I contributi a OX Desk o alle sue dipendenze dovrebbero essere forniti sotto forma di richieste pull GitHub. 
 Ogni richiesta pull verrà esaminata da un collaboratore principale (qualcuno con il permesso di applicare) ed è abilitato all'uso dell'albero principale o dare un feedback per le modifiche che sarebbero necessarie. 
 Tutti i contributi dovrebbero seguire questo formato, anche quelli dei contributori principali.
 
@@ -22,7 +22,7 @@ Questo per evitare duplicati sforzi dei contributori sullo stesso problema.
 
 - Le modifiche devono essere accompagnati da un certificato di origine per sviluppatori firmato (http://developercertificate.org), che indica che tu (e il tuo datore di lavoro se applicabile) accetti di essere vincolato dai termini della [licenza progetto](../LICENCE). In git, questa è l'opzione `-s` di `git commit`
 
-- Se la tua patch non viene esaminata o hai bisogno che una persona specifica la esamini, puoi @-rispondere ad un revisore chiedendo una revisione nella richiesta pull o un commento, oppure puoi chiedere una revisione tramite [email](mailto:info@rustdesk.com).
+- Se la tua patch non viene esaminata o hai bisogno che una persona specifica la esamini, puoi @-rispondere ad un revisore chiedendo una revisione nella richiesta pull o un commento, oppure puoi chiedere una revisione tramite [email](mailto:info@ox-desk.com).
 
 - Aggiungi test relativi al bug corretto o alla nuova funzionalità.
 
@@ -30,8 +30,8 @@ Per istruzioni specifiche su git, vedi [Workflow GitHub - 101](https://github.co
 
 ## Condotta
 
-https://github.com/rustdesk/rustdesk/blob/master/docs/CODE_OF_CONDUCT.md
+https://github.com/ox-desk/ox-desk/blob/master/docs/CODE_OF_CONDUCT.md
 
 ## Comunicazioni
 
-I contributori di RustDesk frequentano [Discord](https://discord.gg/nDceKgxnkV).
+I contributori di OX Desk frequentano [Discord](https://discord.gg/nDceKgxnkV).

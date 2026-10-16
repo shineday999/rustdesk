@@ -845,13 +845,13 @@ impl TerminalSession {
         }
 
         // 1. Windows (non-helper mode)
-        //    `pty_pair` uses pipe. https://github.com/rustdesk-org/wezterm/blob/80174f8009f41565f0fa8c66dab90d4f9211ae16/pty/src/win/conpty.rs#L16
-        //     `read()` may stuck at https://github.com/rustdesk-org/wezterm/blob/80174f8009f41565f0fa8c66dab90d4f9211ae16/filedescriptor/src/windows.rs#L345
+        //    `pty_pair` uses pipe. https://github.com/ox-desk-org/wezterm/blob/80174f8009f41565f0fa8c66dab90d4f9211ae16/pty/src/win/conpty.rs#L16
+        //     `read()` may stuck at https://github.com/ox-desk-org/wezterm/blob/80174f8009f41565f0fa8c66dab90d4f9211ae16/filedescriptor/src/windows.rs#L345
         //     We can close the pipe to signal the reader thread to exit.
-        //     After https://github.com/rustdesk-org/wezterm/blob/80174f8009f41565f0fa8c66dab90d4f9211ae16/pty/src/win/psuedocon.rs#L86, the reader reads `[27, 91, 63, 57, 48, 48, 49, 108, 27, 91, 63, 49, 48, 48, 52, 108]` in my tests.
+        //     After https://github.com/ox-desk-org/wezterm/blob/80174f8009f41565f0fa8c66dab90d4f9211ae16/pty/src/win/psuedocon.rs#L86, the reader reads `[27, 91, 63, 57, 48, 48, 49, 108, 27, 91, 63, 49, 48, 48, 52, 108]` in my tests.
         // 2. Linux
-        //    `pty_pair` uses `libc::openpty`. https://github.com/rustdesk-org/wezterm/blob/80174f8009f41565f0fa8c66dab90d4f9211ae16/pty/src/unix.rs#L32
-        //    We can also call the drop method first. https://github.com/rustdesk-org/wezterm/blob/80174f8009f41565f0fa8c66dab90d4f9211ae16/pty/src/unix.rs#L352
+        //    `pty_pair` uses `libc::openpty`. https://github.com/ox-desk-org/wezterm/blob/80174f8009f41565f0fa8c66dab90d4f9211ae16/pty/src/unix.rs#L32
+        //    We can also call the drop method first. https://github.com/ox-desk-org/wezterm/blob/80174f8009f41565f0fa8c66dab90d4f9211ae16/pty/src/unix.rs#L352
         //    The reader will get [13, 10] after dropping the `pty_pair`.
         // 3. macOS
         //    No stuck cases have been found so far, more testing is needed.
@@ -1392,8 +1392,8 @@ impl TerminalServiceProxy {
 
         // Generate unique pipe names for this terminal
         let pipe_id = uuid::Uuid::new_v4();
-        let input_pipe_name = format!(r"\\.\pipe\rustdesk_term_in_{}", pipe_id);
-        let output_pipe_name = format!(r"\\.\pipe\rustdesk_term_out_{}", pipe_id);
+        let input_pipe_name = format!(r"\\.\pipe\ox-desk_term_in_{}", pipe_id);
+        let output_pipe_name = format!(r"\\.\pipe\ox-desk_term_out_{}", pipe_id);
 
         log::debug!(
             "Creating pipes: input={}, output={}",

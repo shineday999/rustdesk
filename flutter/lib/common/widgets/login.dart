@@ -120,7 +120,7 @@ class ButtonOP extends StatelessWidget {
               backgroundColor: primaryColor,
             ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0)),
             onPressed:
-                curOP.value == 'rustdesk' || !canStartAuth() ? null : onTap,
+                curOP.value == 'ox-desk' || !canStartAuth() ? null : onTap,
             child: Row(
               children: [
                 SizedBox(
@@ -235,7 +235,7 @@ class _OidcAuthController {
       return;
     }
     final hasActiveOidcAuth =
-        curOP.value.isNotEmpty && curOP.value != 'rustdesk';
+        curOP.value.isNotEmpty && curOP.value != 'ox-desk';
     _closed = true;
     _authAttempt++;
     curOP.value = '';
@@ -836,7 +836,7 @@ Future<bool?> _openLoginDialog() async {
         setState(() => passwordMsg = translate('Password missed'));
         return;
       }
-      curOP.value = 'rustdesk';
+      curOP.value = 'ox-desk';
       setState(() => isInProgress = true);
       try {
         final resp = await gFFI.userModel.login(LoginRequest(

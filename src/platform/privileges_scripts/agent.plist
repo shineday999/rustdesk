@@ -3,10 +3,10 @@
 <plist version="1.0">
     <dict>
         <key>Label</key>
-        <string>com.carriez.RustDesk_server</string>
+        <string>com.carriez.OX Desk_server</string>
 
 	<key>AssociatedBundleIdentifiers</key>
-	<string>com.carriez.rustdesk</string>
+	<string>com.carriez.ox-desk</string>
     
         <key>LimitLoadToSessionType</key>
         <array>
@@ -26,11 +26,11 @@
         <true />
         <key>ProgramArguments</key>
         <array>
-            <string>/Applications/RustDesk.app/Contents/MacOS/RustDesk</string>
+            <string>/Applications/OX Desk.app/Contents/MacOS/OX Desk</string>
             <string>--server</string>
         </array>
         <key>WorkingDirectory</key>
-        <string>/Applications/RustDesk.app/Contents/MacOS/</string>
+        <string>/Applications/OX Desk.app/Contents/MacOS/</string>
         <key>ProcessType</key>
         <string>Interactive</string>
     </dict>

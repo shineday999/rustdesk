@@ -39,7 +39,7 @@ dependencies:
   toggle_switch: ^2.1.0
   dash_chat_2:
     git:
-      url: https://github.com/rustdesk-org/Dash-Chat-2
+      url: https://github.com/ox-desk-org/Dash-Chat-2
       ref: bd6b5b41254e57c5bcece202ebfb234de63e6487
   draggable_float_widget: ^0.1.0
   settings_ui: ^2.0.2
@@ -53,16 +53,16 @@ dependencies:
   flutter_rust_bridge: "1.80.1"
   window_manager:
     git:
-      url: https://github.com/rustdesk-org/window_manager
+      url: https://github.com/ox-desk-org/window_manager
       ref: cf4aef0512092fad9344a27ffe1c47ad83269dfc
   desktop_multi_window:
     git:
-      url: https://github.com/rustdesk-org/rustdesk_desktop_multi_window
+      url: https://github.com/ox-desk-org/ox-desk_desktop_multi_window
       ref: cddc2e64f8fefce4f80db87b20bcda2dd019bed6
   freezed_annotation: ^2.0.3
   flutter_custom_cursor:
     git:
-      url: https://github.com/rustdesk-org/flutter_custom_cursor
+      url: https://github.com/ox-desk-org/flutter_custom_cursor
       ref: db63b785c38153603e9fb84b50d3ec46f0d7e05e
   window_size:
     git:
@@ -79,7 +79,7 @@ dependencies:
   flutter_svg: ^2.0.5
   uni_links:
     git:
-      url: https://github.com/rustdesk-org/uni_links
+      url: https://github.com/ox-desk-org/uni_links
       path: uni_links
       ref: f416118d843a7e9ed117c7bb7bdc2deda5a9e86f
   uni_links_desktop: ^0.1.6 # use 0.1.6 to make flutter 3.13 works
@@ -92,20 +92,20 @@ dependencies:
   flutter_keyboard_visibility: ^5.4.0
   texture_rgba_renderer:
     git:
-      url: https://github.com/rustdesk-org/flutter_texture_rgba_renderer
+      url: https://github.com/ox-desk-org/flutter_texture_rgba_renderer
       ref: 42797e0f03141dc2b585f76c64a13974508058b4
   percent_indicator: ^4.2.2
   dropdown_button2: ^2.0.0
   flutter_gpu_texture_renderer:
     git:
-      url: https://github.com/rustdesk-org/flutter_gpu_texture_renderer
+      url: https://github.com/ox-desk-org/flutter_gpu_texture_renderer
       ref: 08a471bb8ceccdd50483c81cdfa8b81b07b14b87
   uuid: ^3.0.7
   auto_size_text_field: ^2.2.1
   flex_color_picker: ^3.3.0
   dynamic_layouts:
     git:
-      url: https://github.com/rustdesk-org/dynamic_layouts.git
+      url: https://github.com/ox-desk-org/dynamic_layouts.git
       ref: 24cb88413fa5181d949ddacbb30a65d5c459e7d9
   pull_down_button: ^0.9.3
   device_info_plus: ^9.1.0

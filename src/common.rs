@@ -1050,10 +1050,10 @@ pub(crate) fn release_id_from_update_url(update_url: &str) -> ResultType<String>
     };
     let segments = segments.collect::<Vec<_>>();
     let release_id = match segments.as_slice() {
-        ["rustdesk", "rustdesk", "releases", "tag", release_id] => *release_id,
-        ["rustdesk", "rustdesk", "releases", "tag", release_id, ""] => *release_id,
+        ["ox-desk", "ox-desk", "releases", "tag", release_id] => *release_id,
+        ["ox-desk", "ox-desk", "releases", "tag", release_id, ""] => *release_id,
         _ => bail!(
-            "Update URL is not a RustDesk release tag URL: {}",
+            "Update URL is not a OX Desk release tag URL: {}",
             update_url
         ),
     };
@@ -1127,7 +1127,7 @@ fn process_software_update_check_response(bytes: Bytes) -> ResultType<()> {
 }
 
 // No need to check `danger_accept_invalid_cert` for now.
-// Because the url is always `https://api.rustdesk.com/version/latest`.
+// Because the url is always `https://api.ox-desk.com/version/latest`.
 #[tokio::main(flavor = "current_thread")]
 pub async fn do_check_software_update() -> hbb_common::ResultType<()> {
     let (request, url) =
@@ -1181,8 +1181,8 @@ pub fn get_app_name() -> String {
 }
 
 #[inline]
-pub fn is_rustdesk() -> bool {
-    hbb_common::config::APP_NAME.read().unwrap().eq("RustDesk")
+pub fn is_ox-desk() -> bool {
+    hbb_common::config::APP_NAME.read().unwrap().eq("OX Desk")
 }
 
 #[inline]
@@ -1256,7 +1256,7 @@ fn get_api_server_(api: String, custom: String) -> String {
             return format!("http://{}", s);
         }
     }
-    "https://admin.rustdesk.com".to_owned()
+    "https://admin.ox-desk.com".to_owned()
 }
 
 #[inline]
@@ -1269,7 +1269,7 @@ pub fn is_public(url: &str) -> bool {
         return false;
     };
     let host = host.strip_suffix('.').unwrap_or(host);
-    host == "rustdesk.com" || host.ends_with(".rustdesk.com")
+    host == "ox-desk.com" || host.ends_with(".ox-desk.com")
 }
 
 pub fn get_tcp_punch_enabled() -> bool {
@@ -2224,7 +2224,7 @@ pub fn check_process(arg: &str, mut same_uid: bool) -> bool {
         if same_uid && p.user_id() != my_uid {
             continue;
         }
-        // on mac, p.cmd() get "/Applications/RustDesk.app/Contents/MacOS/RustDesk", "XPC_SERVICE_NAME=com.carriez.RustDesk_server"
+        // on mac, p.cmd() get "/Applications/OX Desk.app/Contents/MacOS/OX Desk", "XPC_SERVICE_NAME=com.carriez.OX Desk_server"
         let parg = if p.cmd().len() <= 1 { "" } else { &p.cmd()[1] };
         if arg.is_empty() {
             if !parg.starts_with("--") {
@@ -2447,10 +2447,10 @@ impl ThrottledInterval {
     }
 }
 
-pub type RustDeskInterval = ThrottledInterval;
+pub type OX DeskInterval = ThrottledInterval;
 
 #[inline]
-pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
+pub fn ox-desk_interval(i: Interval) -> ThrottledInterval {
     ThrottledInterval::new(i)
 }
 
@@ -2655,7 +2655,7 @@ pub fn get_builtin_option(key: &str) -> String {
 
 #[inline]
 pub fn is_custom_client() -> bool {
-    get_app_name() != "RustDesk"
+    get_app_name() != "OX Desk"
 }
 
 pub fn verify_login(_raw: &str, _id: &str) -> bool {
@@ -3052,8 +3052,8 @@ mod tests {
     use std::collections::HashSet;
 
     #[test]
-    fn parses_stable_rustdesk_release_url() {
-        let update_url = "https://github.com/rustdesk/rustdesk/releases/tag/v1.4.6";
+    fn parses_stable_ox-desk_release_url() {
+        let update_url = "https://github.com/ox-desk/ox-desk/releases/tag/v1.4.6";
 
         assert_eq!(release_id_from_update_url(update_url).unwrap(), "v1.4.6");
         assert_eq!(display_version_from_release_id("v1.4.6").unwrap(), "1.4.6");
@@ -3066,19 +3066,19 @@ mod tests {
     #[test]
     fn rejects_untrusted_release_urls_and_unstable_versions() {
         for update_url in [
-            "http://github.com/rustdesk/rustdesk/releases/tag/v1.4.6",
-            "https://github.com:8443/rustdesk/rustdesk/releases/tag/v1.4.6",
-            "https://github.com:443/rustdesk/rustdesk/releases/tag/v1.4.6",
-            "https://user@github.com/rustdesk/rustdesk/releases/tag/v1.4.6",
-            "https://example.com/rustdesk/rustdesk/releases/tag/v1.4.6",
-            "https://github.com/other/rustdesk/releases/tag/v1.4.6",
-            "https://github.com/rustdesk/other/releases/tag/v1.4.6",
-            "https://github.com/rustdesk/rustdesk/releases/download/v1.4.6/rustdesk.exe",
-            "https://github.com/rustdesk/rustdesk/releases/tag/v1.4.6?x=1",
-            "https://github.com/rustdesk/rustdesk/releases/tag/v1.4.6#asset",
-            "https://github.com/rustdesk/rustdesk/releases/tag/v1.4.6/extra",
-            "https://github.com/rustdesk/rustdesk/releases/tag/v1%2F4%2F6",
-            "https://github.com/rustdesk/rustdesk/releases/tag/%2e%2e",
+            "http://github.com/ox-desk/ox-desk/releases/tag/v1.4.6",
+            "https://github.com:8443/ox-desk/ox-desk/releases/tag/v1.4.6",
+            "https://github.com:443/ox-desk/ox-desk/releases/tag/v1.4.6",
+            "https://user@github.com/ox-desk/ox-desk/releases/tag/v1.4.6",
+            "https://example.com/ox-desk/ox-desk/releases/tag/v1.4.6",
+            "https://github.com/other/ox-desk/releases/tag/v1.4.6",
+            "https://github.com/ox-desk/other/releases/tag/v1.4.6",
+            "https://github.com/ox-desk/ox-desk/releases/download/v1.4.6/ox-desk.exe",
+            "https://github.com/ox-desk/ox-desk/releases/tag/v1.4.6?x=1",
+            "https://github.com/ox-desk/ox-desk/releases/tag/v1.4.6#asset",
+            "https://github.com/ox-desk/ox-desk/releases/tag/v1.4.6/extra",
+            "https://github.com/ox-desk/ox-desk/releases/tag/v1%2F4%2F6",
+            "https://github.com/ox-desk/ox-desk/releases/tag/%2e%2e",
         ] {
             assert!(release_id_from_update_url(update_url).is_err());
         }
@@ -3176,10 +3176,10 @@ mod tests {
     // ThrottledInterval tick less times than tokio interval, if there're sleeps
     #[allow(non_snake_case)]
     #[tokio::test]
-    async fn test_RustDesk_interval_sleep() {
+    async fn test_OX Desk_interval_sleep() {
         let base_intervals = [interval_maker, interval_at_maker];
         for (i, maker) in base_intervals.into_iter().enumerate() {
-            let mut timer = rustdesk_interval(maker());
+            let mut timer = ox-desk_interval(maker());
             let mut times = Vec::new();
             sleep(Duration::from_secs(3)).await;
             loop {
@@ -3200,13 +3200,13 @@ mod tests {
     }
 
     #[test]
-    fn test_is_public_matches_rustdesk_root_domain() {
-        assert!(is_public("rustdesk.com/"));
-        assert!(is_public("rustdesk.com:21117"));
-        assert!(is_public("api.rustdesk.com:21117"));
-        assert!(!is_public("hello-rustdesk.com"));
-        assert!(!is_public("api.rustdesk.com.evil.test"));
-        assert!(!is_public("https://rustdesk.com@evil.test"));
+    fn test_is_public_matches_ox-desk_root_domain() {
+        assert!(is_public("ox-desk.com/"));
+        assert!(is_public("ox-desk.com:21117"));
+        assert!(is_public("api.ox-desk.com:21117"));
+        assert!(!is_public("hello-ox-desk.com"));
+        assert!(!is_public("api.ox-desk.com.evil.test"));
+        assert!(!is_public("https://ox-desk.com@evil.test"));
     }
 
     #[test]
@@ -3224,8 +3224,8 @@ mod tests {
             "https://admin.example.com"
         ));
         assert!(!should_use_tcp_proxy_for_api_url(
-            "https://admin.rustdesk.com/api/login",
-            "https://admin.rustdesk.com"
+            "https://admin.ox-desk.com/api/login",
+            "https://admin.ox-desk.com"
         ));
         assert!(!should_use_tcp_proxy_for_api_url(
             "https://admin.example.com/api/login",

@@ -75,7 +75,7 @@ mod tests {
 
     #[test]
     fn verifies_and_rejects_sha256() {
-        let mut reader = Cursor::new(b"rustdesk".to_vec());
+        let mut reader = Cursor::new(b"ox-desk".to_vec());
         reader.set_position(reader.get_ref().len() as u64);
 
         verify_sha256_reader(

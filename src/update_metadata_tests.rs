@@ -16,11 +16,11 @@ struct Fixture {
 }
 
 fn artifact() -> Value {
-    json!({"platform":"windows","arch":"x86_64","format":"exe","url":"https://github.com/rustdesk/rustdesk/releases/download/v1.4.6/rustdesk-1.4.6-x86_64.exe","file_name":"rustdesk-1.4.6-x86_64.exe","size":123456,"sha256":SHA256})
+    json!({"platform":"windows","arch":"x86_64","format":"exe","url":"https://github.com/ox-desk/ox-desk/releases/download/v1.4.6/ox-desk-1.4.6-x86_64.exe","file_name":"ox-desk-1.4.6-x86_64.exe","size":123456,"sha256":SHA256})
 }
 
 fn metadata() -> Value {
-    json!({"schema_version":1,"app":"rustdesk","package_id":"rustdesk","version":"1.4.6","release_id":"v1.4.6","published_at":"2026-05-14T00:00:00Z","signature_key_id":KEY_ID,"artifacts":[artifact()]})
+    json!({"schema_version":1,"app":"ox-desk","package_id":"ox-desk","version":"1.4.6","release_id":"v1.4.6","published_at":"2026-05-14T00:00:00Z","signature_key_id":KEY_ID,"artifacts":[artifact()]})
 }
 
 fn set_value(metadata: &mut Value, key: &str, value: Value, artifact_field: bool) {
@@ -86,7 +86,7 @@ fn verify_with_query(
             requirements: requirements(*query),
             expected_package_id: PUBLIC_UPDATE_PACKAGE_ID,
             artifact_url_policy: ArtifactUrlPolicy::ExactPrefix(
-                "https://github.com/rustdesk/rustdesk/releases/download/v1.4.6/",
+                "https://github.com/ox-desk/ox-desk/releases/download/v1.4.6/",
             ),
             trusted_keys: &trusted_keys,
         },
@@ -100,7 +100,7 @@ fn verify(fixture: &Fixture) -> ResultType<VerifiedUpdateArtifact> {
 #[test]
 fn accepts_valid_metadata_and_signature() {
     let artifact = verify(&valid_fixture()).expect("verified artifact");
-    assert_eq!("rustdesk-1.4.6-x86_64.exe", artifact.file_name);
+    assert_eq!("ox-desk-1.4.6-x86_64.exe", artifact.file_name);
     assert_eq!(123456, artifact.size);
     assert_eq!(SHA256, artifact.sha256);
     assert_eq!("1.4.6", artifact.version);
@@ -135,8 +135,8 @@ fn rejects_schema_policy_artifact_and_url_mismatches() {
         ("package_id", json!("custom"), false), ("signature_key_id", json!("different-key"), false),
         ("arch", json!("x86"), true),
         ("sha256", json!("not-a-sha256"), true),
-        ("url", json!("https://github.com/rustdesk/rustdesk/releases/download/v1.4.7/rustdesk-1.4.6-x86_64.exe"), true),
-        ("url", json!("https://github.com/rustdesk/rustdesk/releases/download/v1.4.6/other.exe"), true),
+        ("url", json!("https://github.com/ox-desk/ox-desk/releases/download/v1.4.7/ox-desk-1.4.6-x86_64.exe"), true),
+        ("url", json!("https://github.com/ox-desk/ox-desk/releases/download/v1.4.6/other.exe"), true),
     ];
     for (key, value, artifact_field) in cases {
         let mut metadata = metadata();
@@ -149,18 +149,18 @@ fn rejects_schema_policy_artifact_and_url_mismatches() {
 fn rejects_artifact_file_name_path_components() {
     for file_name in [
         "",
-        "nested/rustdesk.exe",
-        r"nested\rustdesk.exe",
+        "nested/ox-desk.exe",
+        r"nested\ox-desk.exe",
         "..",
         "rust desk.exe",
-        "rustdesk*.exe",
-        "rustdesk\n.exe",
+        "ox-desk*.exe",
+        "ox-desk\n.exe",
         "rüstdesk.exe",
     ] {
         let mut invalid_metadata = metadata();
         invalid_metadata["artifacts"][0]["file_name"] = json!(file_name);
         invalid_metadata["artifacts"][0]["url"] = json!(format!(
-            "https://github.com/rustdesk/rustdesk/releases/download/v1.4.6/{file_name}"
+            "https://github.com/ox-desk/ox-desk/releases/download/v1.4.6/{file_name}"
         ));
         let fixture = sign_fixture(invalid_metadata, KEY_ID);
 
@@ -175,7 +175,7 @@ fn rejects_artifact_file_name_path_components() {
 #[test]
 fn verifies_metadata_generated_by_python_release_script_fixture() {
     const PYTHON_KEY_ID: &str = "python-test-ed25519-main";
-    let metadata = br#"{"schema_version":1,"app":"rustdesk","package_id":"rustdesk","version":"1.4.6","release_id":"v1.4.6","published_at":"2026-05-14T00:00:00Z","signature_key_id":"python-test-ed25519-main","artifacts":[{"platform":"windows","arch":"x86_64","format":"exe","url":"https://github.com/rustdesk/rustdesk/releases/download/v1.4.6/rustdesk-1.4.6-x86_64.exe","file_name":"rustdesk-1.4.6-x86_64.exe","size":8,"sha256":"304ca1638c5effa6832e0e15b958a8f74847efe4df9c3f3187216e921c168fed"}]}"#;
+    let metadata = br#"{"schema_version":1,"app":"ox-desk","package_id":"ox-desk","version":"1.4.6","release_id":"v1.4.6","published_at":"2026-05-14T00:00:00Z","signature_key_id":"python-test-ed25519-main","artifacts":[{"platform":"windows","arch":"x86_64","format":"exe","url":"https://github.com/ox-desk/ox-desk/releases/download/v1.4.6/ox-desk-1.4.6-x86_64.exe","file_name":"ox-desk-1.4.6-x86_64.exe","size":8,"sha256":"304ca1638c5effa6832e0e15b958a8f74847efe4df9c3f3187216e921c168fed"}]}"#;
     let signature = br#"{"schema_version":1,"algorithm":"ed25519","key_id":"python-test-ed25519-main","signature":"ZMcod9VNaEGTYK0gIfGmMQ44HAvrYAkYDyIL9JTKjzUH+hVFYs8KpvnGSlteAHwqiJuJDdiKBVCPEdtcRRAJCA=="}"#;
     let trusted_key = TrustedUpdateKey {
         key_id: PYTHON_KEY_ID,
@@ -194,14 +194,14 @@ fn verifies_metadata_generated_by_python_release_script_fixture() {
             requirements: requirements(query()),
             expected_package_id: PUBLIC_UPDATE_PACKAGE_ID,
             artifact_url_policy: ArtifactUrlPolicy::ExactPrefix(
-                "https://github.com/rustdesk/rustdesk/releases/download/v1.4.6/",
+                "https://github.com/ox-desk/ox-desk/releases/download/v1.4.6/",
             ),
             trusted_keys: &trusted_keys,
         },
     )
     .expect("Python-generated update metadata verifies");
 
-    assert_eq!("rustdesk-1.4.6-x86_64.exe", artifact.file_name);
+    assert_eq!("ox-desk-1.4.6-x86_64.exe", artifact.file_name);
 }
 
 #[path = "update_metadata/offline_tests.rs"]

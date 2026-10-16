@@ -70,7 +70,7 @@ const PRIVILEGED_UPDATE_BODY: &str = r#"
 	    set check_source to "if [ -n " & expected_sha256_q & " ]; then test -f " & source_path_q & "; else test -d " & source_path_q & "; fi;"
 	    set kill_others to "pids=$(pgrep -x '" & app_name & "' | grep -vx " & cur_pid & " || true); if [ -n \"$pids\" ]; then echo \"$pids\" | xargs kill -9 || true; fi;"
 	    -- Rehash the root-owned copy in a clean environment before staging bytes.
-	    set prepare_verified to "verified_dir=$(/usr/bin/mktemp -d /tmp/.rustdeskupdate-verified.XXXXXX); /bin/chmod 0700 \"$verified_dir\"; verified_app=\"$verified_dir/" & app_name & ".app\"; dmg_attached=0; if [ -n " & expected_sha256_q & " ]; then verified_dmg=\"$verified_dir/update.dmg\"; /bin/cp " & source_path_q & " \"$verified_dmg\"; /usr/sbin/chown root:wheel \"$verified_dmg\"; /bin/chmod 0400 \"$verified_dmg\"; actual_sha256=$(/usr/bin/env -i /usr/bin/shasum -a 256 \"$verified_dmg\"); actual_sha256=${actual_sha256%% *}; if [ \"$actual_sha256\" != " & expected_sha256_q & " ]; then echo 'Update DMG SHA256 mismatch' >&2; exit 1; fi; dmg_mount=\"$verified_dir/mount\"; /bin/mkdir \"$dmg_mount\"; dmg_attached=1; /usr/bin/hdiutil attach -readonly -nobrowse -mountpoint \"$dmg_mount\" \"$verified_dmg\" >/dev/null; /usr/bin/ditto \"$dmg_mount/" & app_name & ".app\" \"$verified_app\"; /usr/bin/hdiutil detach \"$dmg_mount\" -force >/dev/null; dmg_attached=0; /bin/rm -f \"$verified_dmg\"; else /usr/bin/ditto " & source_path_q & " \"$verified_app\"; fi; /usr/sbin/chown -R root:wheel \"$verified_app\"; /bin/chmod -R go-w \"$verified_app\";"
+	    set prepare_verified to "verified_dir=$(/usr/bin/mktemp -d /tmp/.ox-deskupdate-verified.XXXXXX); /bin/chmod 0700 \"$verified_dir\"; verified_app=\"$verified_dir/" & app_name & ".app\"; dmg_attached=0; if [ -n " & expected_sha256_q & " ]; then verified_dmg=\"$verified_dir/update.dmg\"; /bin/cp " & source_path_q & " \"$verified_dmg\"; /usr/sbin/chown root:wheel \"$verified_dmg\"; /bin/chmod 0400 \"$verified_dmg\"; actual_sha256=$(/usr/bin/env -i /usr/bin/shasum -a 256 \"$verified_dmg\"); actual_sha256=${actual_sha256%% *}; if [ \"$actual_sha256\" != " & expected_sha256_q & " ]; then echo 'Update DMG SHA256 mismatch' >&2; exit 1; fi; dmg_mount=\"$verified_dir/mount\"; /bin/mkdir \"$dmg_mount\"; dmg_attached=1; /usr/bin/hdiutil attach -readonly -nobrowse -mountpoint \"$dmg_mount\" \"$verified_dmg\" >/dev/null; /usr/bin/ditto \"$dmg_mount/" & app_name & ".app\" \"$verified_app\"; /usr/bin/hdiutil detach \"$dmg_mount\" -force >/dev/null; dmg_attached=0; /bin/rm -f \"$verified_dmg\"; else /usr/bin/ditto " & source_path_q & " \"$verified_app\"; fi; /usr/sbin/chown -R root:wheel \"$verified_app\"; /bin/chmod -R go-w \"$verified_app\";"
 	    set validate_verified_app to "candidate_bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' \"$verified_app/Contents/Info.plist\"); if [ -z " & expected_bundle_id_q & " ] || [ \"$candidate_bundle_id\" != " & expected_bundle_id_q & " ]; then echo 'Update app bundle identifier mismatch' >&2; exit 1; fi; if [ -e " & app_bundle_q & " ]; then installed_bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' " & installed_info_q & "); if [ \"$installed_bundle_id\" != " & expected_bundle_id_q & " ]; then echo 'Installed app bundle identifier mismatch' >&2; exit 1; fi; fi;"
 	    set prepare_swap_paths to "temp_bundle=" & app_bundle_q & ".new.$$; old_bundle=" & app_bundle_q & ".old.$$;"
 	    set cleanup_swap_paths to "rm -rf \"$temp_bundle\" \"$old_bundle\";"
@@ -155,7 +155,7 @@ pub fn is_can_screen_recording(prompt: bool) -> bool {
 
 // macOS >= 10.15
 // https://stackoverflow.com/questions/56597221/detecting-screen-recording-settings-on-macos-catalina/
-// remove just one app from all the permissions: tccutil reset All com.carriez.rustdesk
+// remove just one app from all the permissions: tccutil reset All com.carriez.ox-desk
 fn unsafe_is_can_screen_recording(prompt: bool) -> bool {
     // we got some report that we show no permission even after set it, so we try to use new api for screen recording check
     // the new api is only available on macOS >= 10.15, but on stackoverflow, some people said it works on >= 10.16 (crash on 10.15),
@@ -365,10 +365,10 @@ fn update_daemon_agent(agent_plist_file: String, update_source: UpdateSource) ->
 fn correct_app_name(s: &str) -> String {
     let mut s = s.to_owned();
     if let Some(bundleid) = get_bundle_id() {
-        s = s.replace("com.carriez.rustdesk", &bundleid);
+        s = s.replace("com.carriez.ox-desk", &bundleid);
     }
-    s = s.replace("rustdesk", &crate::get_app_name().to_lowercase());
-    s = s.replace("RustDesk", &crate::get_app_name());
+    s = s.replace("ox-desk", &crate::get_app_name().to_lowercase());
+    s = s.replace("OX Desk", &crate::get_app_name());
     s
 }
 
@@ -866,8 +866,8 @@ pub fn start_os_service() {
     /* // mouse/keyboard works in prelogin now with launchctl asuser.
        // below can avoid multi-users logged in problem, but having its own below problem.
        // Not find a good way to start --cm without root privilege (affect file transfer).
-       // one way is to start with `launchctl asuser <uid> open -n -a /Applications/RustDesk.app/ --args --cm`,
-       // this way --cm is started with the user privilege, but we will have problem to start another RustDesk.app
+       // one way is to start with `launchctl asuser <uid> open -n -a /Applications/OX Desk.app/ --args --cm`,
+       // this way --cm is started with the user privilege, but we will have problem to start another OX Desk.app
        // with open in explorer.
         use std::sync::{
             atomic::{AtomicBool, Ordering},
@@ -948,7 +948,7 @@ pub fn quit_gui() {
 
 pub fn update_me() -> ResultType<()> {
     let cmd = std::env::current_exe()?;
-    // RustDesk.app/Contents/MacOS/RustDesk
+    // OX Desk.app/Contents/MacOS/OX Desk
     let app_dir = cmd
         .parent()
         .and_then(|p| p.parent())
@@ -1170,7 +1170,7 @@ pub fn update_from_dmg_as_root(dmg_path: &str, expected_version: &str) -> Result
     validate_install_app_name(&app_name)?;
     let app_bundle = format!("/Applications/{}.app", app_name);
     let tmp_dir_output = std::process::Command::new("/usr/bin/mktemp")
-        .args(&["-d", "/tmp/.rustdeskupdate-root-XXXXXX"])
+        .args(&["-d", "/tmp/.ox-deskupdate-root-XXXXXX"])
         .output()?;
     let tmp_dir = String::from_utf8(tmp_dir_output.stdout)
         .map_err(|e| anyhow!("[root-update] mktemp output error: {}", e))?
@@ -1314,11 +1314,11 @@ pub fn update_from_dmg_as_root(dmg_path: &str, expected_version: &str) -> Result
         .join(" ");
 
     // Write a shell script that runs detached after this function returns.
-    // We cannot directly replace /Applications/RustDesk.app while it is running,
+    // We cannot directly replace /Applications/OX Desk.app while it is running,
     // so we spawn a script that waits, kills processes, copies, and restarts.
     let daemon_label = format!("com.carriez.{}_service", app_name);
     let agent_label = format!("com.carriez.{}_server", app_name);
-    let script_path = format!("{}/rustdesk_update.sh", tmp_dir);
+    let script_path = format!("{}/ox-desk_update.sh", tmp_dir);
     let script = format!(
         r#"#!/bin/sh
 rollback_done=0
@@ -1616,18 +1616,18 @@ write_new_plists() {{
 restore_old_bundle() {{
     [ "$bundle_swapped" -eq 1 ] || return 0
     if [ ! -d "{app_bundle}.bak" ] || [ -L "{app_bundle}.bak" ]; then
-        echo "[root-update] CRITICAL: valid application backup is unavailable" >> {tmp_dir}/rustdesk_root_update.log
+        echo "[root-update] CRITICAL: valid application backup is unavailable" >> {tmp_dir}/ox-desk_root_update.log
         return 1
     fi
     if [ -e "{app_bundle}" ] || [ -L "{app_bundle}" ]; then
         if [ -e "{app_bundle}.failed-update" ] || [ -L "{app_bundle}.failed-update" ] || \
            ! mv "{app_bundle}" "{app_bundle}.failed-update"; then
-            echo "[root-update] CRITICAL: could not vacate failed bundle safely" >> {tmp_dir}/rustdesk_root_update.log
+            echo "[root-update] CRITICAL: could not vacate failed bundle safely" >> {tmp_dir}/ox-desk_root_update.log
             return 1
         fi
     fi
     if ! mv "{app_bundle}.bak" "{app_bundle}"; then
-        echo "[root-update] CRITICAL: failed to restore application bundle" >> {tmp_dir}/rustdesk_root_update.log
+        echo "[root-update] CRITICAL: failed to restore application bundle" >> {tmp_dir}/ox-desk_root_update.log
         if [ ! -e "{app_bundle}" ] && [ ! -L "{app_bundle}" ]; then
             mv "{app_bundle}.failed-update" "{app_bundle}" 2>/dev/null || true
         fi
@@ -1649,7 +1649,7 @@ rollback_transaction() {{
     restore_old_bundle || restore_failed=1
     cp "{daemon_plist_bak}" "{daemon_plist}" || restore_failed=1
     cp "{agent_plist_bak}" "{agent_plist}" || restore_failed=1
-    touch /var/root/.rustdeskupdate_failed || restore_failed=1
+    touch /var/root/.ox-deskupdate_failed || restore_failed=1
     if ! launchctl load -w "{daemon_plist}" 2>/dev/null && \
        ! launchctl bootstrap system "{daemon_plist}" 2>/dev/null; then
         restore_failed=1
@@ -1662,9 +1662,9 @@ rollback_transaction() {{
         restore_failed=1
     fi
     if [ "$restore_failed" -ne 0 ]; then
-        echo "[root-update] CRITICAL: rollback restoration failed" >> {tmp_dir}/rustdesk_root_update.log
+        echo "[root-update] CRITICAL: rollback restoration failed" >> {tmp_dir}/ox-desk_root_update.log
     else
-        echo "[root-update] Rollback daemon and agents verified healthy" >> {tmp_dir}/rustdesk_root_update.log
+        echo "[root-update] Rollback daemon and agents verified healthy" >> {tmp_dir}/ox-desk_root_update.log
     fi
 }}
 trap rollback_transaction EXIT
@@ -1680,31 +1680,31 @@ for agent_uid in {uid_list}; do
     done
 done
 if ! capture_agent_snapshot; then
-    echo "[root-update] old LaunchAgent readiness check failed before shutdown" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] old LaunchAgent readiness check failed before shutdown" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 capture_stopping_agent_pids
 if ! stop_daemon; then
-    echo "[root-update] daemon did not stop before bundle swap" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] daemon did not stop before bundle swap" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 if ! stop_agents; then
-    echo "[root-update] old LaunchAgent did not stop before bundle swap" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] old LaunchAgent did not stop before bundle swap" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 # Agents have already been verified absent. Stop and verify any remaining GUI
 # processes as well so no process keeps the old bundle mapped across the swap.
 if ! stop_user_bundle_processes; then
-    echo "[root-update] RustDesk GUI process did not stop before bundle swap" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] OX Desk GUI process did not stop before bundle swap" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 staged_bundle="{tmp_dir}/staged.app"
 if [ -e "$staged_bundle" ] || [ -L "$staged_bundle" ]; then
-    echo "[root-update] staged bundle path already exists, aborting" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] staged bundle path already exists, aborting" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 if ! ditto {src_app} "$staged_bundle" 2>/dev/null; then
-    echo "[root-update] ditto failed, aborting update" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] ditto failed, aborting update" >> {tmp_dir}/ox-desk_root_update.log
     rm -rf "$staged_bundle"
     exit 1
 fi
@@ -1713,25 +1713,25 @@ if [ ! -d "$staged_bundle/Contents/MacOS" ] || \
    [ ! -f "$staged_bundle/Contents/MacOS/{app_name}" ] || \
    [ ! -f "$staged_bundle/Contents/MacOS/service" ] || \
    [ ! -f "$staged_bundle/Contents/Info.plist" ]; then
-    echo "[root-update] staged bundle validation failed, aborting" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] staged bundle validation failed, aborting" >> {tmp_dir}/ox-desk_root_update.log
     rm -rf "$staged_bundle"
     exit 1
 fi
 if ! mv {app_bundle} {app_bundle}.bak; then
-    echo "[root-update] backup mv failed, aborting" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] backup mv failed, aborting" >> {tmp_dir}/ox-desk_root_update.log
     rm -rf "$staged_bundle"
     exit 1
 fi
 bundle_swapped=1
 if ! mv "$staged_bundle" {app_bundle}; then
-    echo "[root-update] replacement mv failed, restoring backup" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] replacement mv failed, restoring backup" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 # Install the entire bundle as root-owned.  The LaunchDaemon executes code
 # from this bundle, so no nested framework, helper, or resource may remain
 # user-writable.
 if ! chown -R root:wheel {app_bundle} || ! chmod -R go-w {app_bundle}; then
-    echo "[root-update] chown failed, restoring backup" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] chown failed, restoring backup" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 xattr -r -d com.apple.quarantine {app_bundle} || true
@@ -1746,51 +1746,51 @@ if ! chown root:wheel {app_bundle} || \
    ! chmod 755 {app_bundle}/Contents/MacOS/service || \
    ! chown root:wheel {app_bundle}/Contents/MacOS/{app_name} || \
    ! chmod 755 {app_bundle}/Contents/MacOS/{app_name}; then
-    echo "[root-update] hardening failed, restoring backup" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] hardening failed, restoring backup" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 # Generate launchd definitions from the new, final-location binary.  The
 # subprocess is bounded and its output is retained for diagnosis; failure
 # causes the existing bundle/plists to be restored by the EXIT trap.
 if ! write_new_plists; then
-    echo "[root-update] CRITICAL: new binary failed to write plists" >> {tmp_dir}/rustdesk_root_update.log
-    cat "{tmp_dir}/write-plists.log" >> {tmp_dir}/rustdesk_root_update.log 2>/dev/null || true
+    echo "[root-update] CRITICAL: new binary failed to write plists" >> {tmp_dir}/ox-desk_root_update.log
+    cat "{tmp_dir}/write-plists.log" >> {tmp_dir}/ox-desk_root_update.log 2>/dev/null || true
     exit 1
 fi
-echo "[root-update] Plist definitions written by new binary" >> {tmp_dir}/rustdesk_root_update.log
+echo "[root-update] Plist definitions written by new binary" >> {tmp_dir}/ox-desk_root_update.log
 # Check daemon registration and readiness BEFORE removing backup.  launchctl
 # load/bootstrap only registers the job; the service can still exit immediately.
 if ! launchctl load -w {daemon_plist} 2>/dev/null && \
    ! launchctl bootstrap system {daemon_plist} 2>/dev/null; then
-    echo "[root-update] CRITICAL: daemon reload failed, restoring backup" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] CRITICAL: daemon reload failed, restoring backup" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 if ! daemon_ready; then
-    echo "[root-update] CRITICAL: daemon failed readiness check, restoring" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] CRITICAL: daemon failed readiness check, restoring" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 # Bootstrap agent BEFORE removing backup — needed for rollback on failure.
 # This also uses launchctl load for the login-window/no-console-user case.
 if ! bootstrap_agents || ! agent_ready; then
-    echo "[root-update] CRITICAL: agent bootstrap failed, rolling back" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] CRITICAL: agent bootstrap failed, rolling back" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 # Recheck daemon liveness after the agent is restored and immediately before
 # deleting the only rollback bundle.
 if ! daemon_snapshot_stable || ! agent_snapshot_stable; then
-    echo "[root-update] CRITICAL: daemon or agent stopped before commit, restoring" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] CRITICAL: daemon or agent stopped before commit, restoring" >> {tmp_dir}/ox-desk_root_update.log
     exit 1
 fi
 # Only remove backup after BOTH daemon AND agent confirmed running
 rollback_done=1
 bundle_swapped=0
 if ! rm -rf "{app_bundle}.bak"; then
-    echo "[root-update] WARNING: committed update but could not remove backup" >> {tmp_dir}/rustdesk_root_update.log
+    echo "[root-update] WARNING: committed update but could not remove backup" >> {tmp_dir}/ox-desk_root_update.log
 fi
 for gui_uid in $gui_uids; do
     launchctl asuser "$gui_uid" open -a "{app_bundle}" || true
 done
-echo "[root-update] Done!" >> {tmp_dir}/rustdesk_root_update.log
+echo "[root-update] Done!" >> {tmp_dir}/ox-desk_root_update.log
 rm -rf {tmp_dir}
 "#,
         app_name = app_name,
@@ -2101,11 +2101,11 @@ mod update_tests {
     #[test]
     fn update_tree_rejects_framework_root_symlink() {
         let test_dir = std::env::temp_dir().join(format!(
-            "rustdesk-update-tree-framework-link-test-{}-{}",
+            "ox-desk-update-tree-framework-link-test-{}-{}",
             std::process::id(),
             hbb_common::rand::random::<u64>()
         ));
-        let app_dir = test_dir.join("RustDesk.app");
+        let app_dir = test_dir.join("OX Desk.app");
         let frameworks_dir = app_dir.join("Contents/Frameworks");
         let external_framework = test_dir.join("External.framework");
         std::fs::create_dir_all(&frameworks_dir).unwrap();
@@ -2125,16 +2125,16 @@ mod update_tests {
     #[test]
     fn update_tree_allows_internal_framework_symlink() {
         let test_dir = std::env::temp_dir().join(format!(
-            "rustdesk-update-tree-internal-link-test-{}-{}",
+            "ox-desk-update-tree-internal-link-test-{}-{}",
             std::process::id(),
             hbb_common::rand::random::<u64>()
         ));
-        let framework_dir = test_dir.join("RustDesk.app/Contents/Frameworks/Test.framework");
+        let framework_dir = test_dir.join("OX Desk.app/Contents/Frameworks/Test.framework");
         let versions_dir = framework_dir.join("Versions");
         std::fs::create_dir_all(versions_dir.join("A")).unwrap();
         std::os::unix::fs::symlink("A", versions_dir.join("Current")).unwrap();
 
-        let result = validate_update_tree(&test_dir.join("RustDesk.app"), None);
+        let result = validate_update_tree(&test_dir.join("OX Desk.app"), None);
 
         std::fs::remove_dir_all(test_dir).unwrap();
         assert!(result.is_ok());
@@ -2143,7 +2143,7 @@ mod update_tests {
     #[test]
     fn update_app_identity_requires_matching_bundles() {
         let test_dir = std::env::temp_dir().join(format!(
-            "rustdesk-update-identity-test-{}-{}",
+            "ox-desk-update-identity-test-{}-{}",
             std::process::id(),
             hbb_common::rand::random::<u64>()
         ));
@@ -2157,11 +2157,11 @@ mod update_tests {
         }
         std::fs::write(
             installed.join("Contents/Info.plist"),
-            info("com.carriez.rustdesk"),
+            info("com.carriez.ox-desk"),
         )
         .unwrap();
 
-        for (bundle_id, accepted) in [("com.carriez.rustdesk", true), ("example.other", false)] {
+        for (bundle_id, accepted) in [("com.carriez.ox-desk", true), ("example.other", false)] {
             std::fs::write(candidate.join("Contents/Info.plist"), info(bundle_id)).unwrap();
             assert_eq!(
                 verify_update_app_identity(&installed, &candidate).is_ok(),

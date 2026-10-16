@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# Script to build F-Droid release of RustDesk
+# Script to build F-Droid release of OX Desk
 #
-# Copyright (C) 2024, The RustDesk Authors
+# Copyright (C) 2024, The OX Desk Authors
 #               2024, Vasyl Gello <vasek.gello@gmail.com>
 #
 
@@ -11,8 +11,8 @@
 #
 # It accepts the following arguments:
 #
-# - versionName from https://github.com/rustdesk/rustdesk/releases/download/fdroid-version/rustdesk-version.txt
-# - versionCode from https://github.com/rustdesk/rustdesk/releases/download/fdroid-version/rustdesk-version.txt
+# - versionName from https://github.com/ox-desk/ox-desk/releases/download/fdroid-version/ox-desk-version.txt
+# - versionCode from https://github.com/ox-desk/ox-desk/releases/download/fdroid-version/ox-desk-version.txt
 # - Android architecture to build APK for: armeabi-v7a arm64-v8av x86 x86_64
 # - The build step to execute:
 #
@@ -302,12 +302,12 @@ prebuild)
 		fi
 	fi
 
-	# Patch the RustDesk sources
+	# Patch the OX Desk sources
 
 	git apply res/fdroid/patches/*.patch
 
 	# Generate bridge files using `FLUTTER_BRIDGE_VERSION`, which may differ
-	# from the Flutter version used to compile RustDesk library, and restore
+	# from the Flutter version used to compile OX Desk library, and restore
 	# the pubspec later
 
 	# Find first libclang.so and set BRIDGE_LLVM_PATH
@@ -369,7 +369,7 @@ prebuild)
 
 	unset BRIDGE_LLVM_PATH
 
-	# Install Flutter version for RustDesk library build
+	# Install Flutter version for OX Desk library build
 
 	prepare_flutter "${FLUTTER_VERSION}" "${HOME}/flutter"
 
@@ -462,7 +462,7 @@ build)
 
 	bash flutter/build_android_deps.sh "${ANDROID_ABI}"
 
-	# Build rustdesk lib
+	# Build ox-desk lib
 
 	cargo ndk \
 		--platform 21 \
@@ -475,8 +475,8 @@ build)
 
 	mkdir -p "flutter/android/app/src/main/jniLibs/${ANDROID_ABI}"
 
-	cp "target/${RUST_TARGET}/release/liblibrustdesk.so" \
-		"flutter/android/app/src/main/jniLibs/${ANDROID_ABI}/librustdesk.so"
+	cp "target/${RUST_TARGET}/release/liblibox-desk.so" \
+		"flutter/android/app/src/main/jniLibs/${ANDROID_ABI}/libox-desk.so"
 
 	cp "${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/${NDK_TARGET}/libc++_shared.so" \
 		"flutter/android/app/src/main/jniLibs/${ANDROID_ABI}/"

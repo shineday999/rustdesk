@@ -99,7 +99,7 @@ lazy_static::lazy_static! {
     static ref GNOME_MONITOR_LAYOUT_MODE_CACHE: std::sync::Mutex<
         Option<(Instant, Option<GnomeMonitorLayoutMode>)>,
     > = Default::default();
-    // https://github.com/rustdesk/rustdesk/issues/13705
+    // https://github.com/ox-desk/ox-desk/issues/13705
     // Check if `sudo -E` actually preserves environment.
     //
     // This flag is only used by `run_as_user()` (root service -> user session). If the current process is not
@@ -343,7 +343,7 @@ static X_UNEXPECTED_ERROR_DETECTED: AtomicBool = AtomicBool::new(false);
 
 /// Custom X error handler that catches BadWindow errors (error_code == 3) instead of
 /// letting the default handler terminate the process.
-/// See issue: https://github.com/rustdesk/rustdesk/issues/9003
+/// See issue: https://github.com/ox-desk/ox-desk/issues/9003
 unsafe extern "C" fn handle_x_error(_display: *mut c_void, event: *mut XErrorEvent) -> c_int {
     if !event.is_null() && (*event).error_code == X11_BAD_WINDOW {
         X_BAD_WINDOW_DETECTED.store(true, Ordering::SeqCst);
@@ -1005,7 +1005,7 @@ fn set_x11_env(desktop: &Desktop) {
 }
 
 #[inline]
-fn stop_rustdesk_servers() {
+fn stop_ox-desk_servers() {
     let _ = run_cmds(&format!(
         r##"ps -ef | grep -E '{} +--server' | awk '{{print $2}}' | xargs -r kill -9"##,
         crate::get_app_name().to_lowercase(),
@@ -1075,15 +1075,15 @@ fn should_start_server(
 }
 
 // to-do: stop_server(&mut user_server); may not stop child correctly
-// stop_rustdesk_servers() is just a temp solution here.
+// stop_ox-desk_servers() is just a temp solution here.
 fn force_stop_server() {
-    stop_rustdesk_servers();
+    stop_ox-desk_servers();
     sleep_millis(super::SERVICE_INTERVAL);
 }
 
 pub fn start_os_service() {
     check_if_stop_service();
-    stop_rustdesk_servers();
+    stop_ox-desk_servers();
     start_uinput_service();
 
     std::thread::spawn(|| {
@@ -1211,7 +1211,7 @@ pub fn start_os_service() {
 
         let keeps_session = sid == desktop.sid;
         if keeps_session {
-            // for fixing https://github.com/rustdesk/rustdesk/issues/3129 to avoid too much dbus calling,
+            // for fixing https://github.com/ox-desk/ox-desk/issues/3129 to avoid too much dbus calling,
             sleep_millis(500);
         } else {
             sleep_millis(super::SERVICE_INTERVAL);
@@ -1396,7 +1396,7 @@ pub fn is_locked() -> bool {
     let values = get_values_of_seat0(&[0]);
     // Though the values can't be empty, we still add check here for safety.
     // Because we cannot guarantee whether the internal implementation will change in the future.
-    // https://github.com/rustdesk/hbb_common/blob/ebb4d4a48cf7ed6ca62e93f8ed124065c6408536/src/platform/linux.rs#L119
+    // https://github.com/ox-desk/hbb_common/blob/ebb4d4a48cf7ed6ca62e93f8ed124065c6408536/src/platform/linux.rs#L119
     if values.is_empty() {
         log::debug!("Failed to check is locked, values vector is empty.");
         return false;
@@ -2022,7 +2022,7 @@ mod desktop {
     /// A compositor that runs Xwayland without exporting `XAUTHORITY` (wlroots, e.g. Hyprland)
     /// still hands out a usable session through the Wayland side. Requiring xauth there never
     /// succeeded, so every refresh ran the retry loop to the end.
-    /// https://github.com/rustdesk/rustdesk/issues/15952
+    /// https://github.com/ox-desk/ox-desk/issues/15952
     fn is_session_env_complete(envs: &std::collections::HashMap<&str, String>) -> bool {
         let value = |key: &str| envs.get(key).map_or("", |v| v.as_str());
         !value(ENV_KEY_DISPLAY).is_empty()
@@ -2696,7 +2696,7 @@ pub fn uninstall_service(show_new_window: bool, _: bool) -> bool {
     log::info!("Uninstalling service...");
     let cp = switch_service(true);
     let app_name = crate::get_app_name().to_lowercase();
-    // systemctl kill rustdesk --tray, execute cp first
+    // systemctl kill ox-desk --tray, execute cp first
     if !run_cmds_privileged(&format!(
         "{cp} systemctl disable {app_name}; systemctl stop {app_name};"
     )) {
@@ -2748,7 +2748,7 @@ pub fn check_autostart_config() -> ResultType<()> {
     let app_name = crate::get_app_name().to_lowercase();
     let path = format!("{home}/.config/autostart");
     let file = format!("{path}/{app_name}.desktop");
-    // https://github.com/rustdesk/rustdesk/issues/4863
+    // https://github.com/ox-desk/ox-desk/issues/4863
     std::fs::remove_file(&file).ok();
     /*
         std::fs::create_dir_all(&path).ok();
@@ -2847,7 +2847,7 @@ pub fn is_selinux_enforcing() -> bool {
 fn get_shortcuts_inhibitor_app_id() -> String {
     if is_flatpak() {
         // In Flatpak, FLATPAK_ID is set automatically by the runtime to the app ID
-        // (e.g., "com.rustdesk.RustDesk"). This is the most reliable source.
+        // (e.g., "com.ox-desk.OX Desk"). This is the most reliable source.
         // Fall back to constructing from app name if not available.
         match std::env::var("FLATPAK_ID") {
             Ok(id) if !id.is_empty() => format!("{}.desktop", id),

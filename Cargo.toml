@@ -1,15 +1,15 @@
 [package]
-name = "rustdesk"
+name = "ox-desk"
 version = "1.5.1"
-authors = ["rustdesk <info@rustdesk.com>"]
+authors = ["ox-desk <info@ox-desk.com>"]
 edition = "2021"
 build= "build.rs"
-description = "RustDesk Remote Desktop"
-default-run = "rustdesk"
+description = "OX Desk Remote Desktop"
+default-run = "ox-desk"
 rust-version = "1.75"
 
 [lib]
-name = "librustdesk"
+name = "hbb"
 crate-type = ["cdylib", "staticlib", "rlib"]
 
 [[bin]]
@@ -64,8 +64,8 @@ sha2 = "0.10"
 repng = "0.2"
 zstd = "0.13"
 xxhash-rust = { version = "0.8", features = ["xxh3"] }
-parity-tokio-ipc = { git = "https://github.com/rustdesk-org/parity-tokio-ipc" }
-magnum-opus = { git = "https://github.com/rustdesk-org/magnum-opus" }
+parity-tokio-ipc = { git = "https://github.com/ox-desk-org/parity-tokio-ipc" }
+magnum-opus = { git = "https://github.com/ox-desk-org/magnum-opus" }
 dasp = { version = "0.11", features = ["signal", "interpolate-linear", "interpolate"], optional = true }
 rubato = { version = "0.12", optional = true }
 samplerate = { version = "0.2", optional = true }
@@ -77,7 +77,7 @@ default-net = "0.14"
 wol-rs = "1.0"
 flutter_rust_bridge = { version = "=1.80", features = ["uuid"], optional = true}
 errno = "0.3"
-rdev = { git = "https://github.com/rustdesk-org/rdev" }
+rdev = { git = "https://github.com/ox-desk-org/rdev" }
 url = { version = "2.3", features = ["serde"] }
 crossbeam-queue = "0.3"
 hex = "0.4"
@@ -87,25 +87,25 @@ fon = "0.6"
 shutdown_hooks = "0.1"
 totp-rs = { version = "5.4", default-features = false, features = ["gen_secret", "otpauth"] }
 stunclient = "0.4"
-kcp-sys= { git = "https://github.com/rustdesk-org/kcp-sys", branch = "rustdesk-patches" }
+kcp-sys= { git = "https://github.com/ox-desk-org/kcp-sys", branch = "ox-desk-patches" }
 reqwest = { version = "0.12", features = ["blocking", "socks", "json", "native-tls", "rustls-tls", "rustls-tls-native-roots", "gzip", "zstd"], default-features=false }
 
 [target.'cfg(not(target_os = "linux"))'.dependencies]
-# https://github.com/rustdesk/rustdesk/discussions/10197, not use cpal on linux
-cpal = { git = "https://github.com/rustdesk-org/cpal", branch = "osx-screencapturekit" }
+# https://github.com/ox-desk/ox-desk/discussions/10197, not use cpal on linux
+cpal = { git = "https://github.com/ox-desk-org/cpal", branch = "osx-screencapturekit" }
 ringbuf = "0.3"
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 mac_address = "1.1"
-sciter-rs = { git = "https://github.com/rustdesk-org/rust-sciter", branch = "dyn" }
+sciter-rs = { git = "https://github.com/ox-desk-org/rust-sciter", branch = "dyn" }
 sys-locale = "0.3"
 enigo = { path = "libs/enigo", features = [ "with_serde" ] }
 clipboard = { path = "libs/clipboard" }
 ctrlc = "3.2"
 # arboard = { version = "3.4", features = ["wayland-data-control"] }
-arboard = { git = "https://github.com/rustdesk-org/arboard", features = ["wayland-data-control"] }
-clipboard-master = { git = "https://github.com/rustdesk-org/clipboard-master" }
-portable-pty = { git = "https://github.com/rustdesk-org/wezterm", branch = "rustdesk/pty_based_0.8.1", package = "portable-pty" }
+arboard = { git = "https://github.com/ox-desk-org/arboard", features = ["wayland-data-control"] }
+clipboard-master = { git = "https://github.com/ox-desk-org/clipboard-master" }
+portable-pty = { git = "https://github.com/ox-desk-org/wezterm", branch = "ox-desk/pty_based_0.8.1", package = "portable-pty" }
 
 system_shutdown = "4.0"
 qrcode-generator = "4.1"
@@ -150,7 +150,7 @@ winreg = "0.11"
 windows-service = "0.6"
 virtual_display = { path = "libs/virtual_display" }
 remote_printer = { path = "libs/remote_printer" }
-impersonate_system = { git = "https://github.com/rustdesk-org/impersonate-system" }
+impersonate_system = { git = "https://github.com/ox-desk-org/impersonate-system" }
 shared_memory = "0.12"
 tauri-winrt-notification = "0.1"
 
@@ -170,14 +170,14 @@ foreign-types = "0.3"
 
 [target.'cfg(any(target_os = "macos", target_os = "linux", target_os = "windows"))'.dependencies]
 tray-icon = { git = "https://github.com/tauri-apps/tray-icon", version = "0.21.3" }
-tao = { git = "https://github.com/rustdesk-org/tao", branch = "dev" }
+tao = { git = "https://github.com/ox-desk-org/tao", branch = "dev" }
 image = "0.24"
 
 [target.'cfg(any(target_os = "macos", target_os = "linux"))'.dependencies]
-keepawake = { git = "https://github.com/rustdesk-org/keepawake-rs" }
+keepawake = { git = "https://github.com/ox-desk-org/keepawake-rs" }
 
 [target.'cfg(any(target_os = "windows", target_os = "linux"))'.dependencies]
-wallpaper = { git = "https://github.com/rustdesk-org/wallpaper.rs" }
+wallpaper = { git = "https://github.com/ox-desk-org/wallpaper.rs" }
 tiny-skia = "0.11"
 softbuffer = "0.4"
 fontdb = "0.23"
@@ -188,9 +188,9 @@ ttf-parser = "0.25"
 libxdo-sys = "0.11"
 psimple = { package = "libpulse-simple-binding", version = "2.27" }
 pulse = { package = "libpulse-binding", version = "2.27" }
-rust-pulsectl = { git = "https://github.com/rustdesk-org/pulsectl" }
+rust-pulsectl = { git = "https://github.com/ox-desk-org/pulsectl" }
 async-process = "1.7"
-evdev = { git="https://github.com/rustdesk-org/evdev" }
+evdev = { git="https://github.com/ox-desk-org/evdev" }
 dbus = "0.9"
 dbus-crossroads = "0.5"
 x11-clipboard = {git="https://github.com/clslaid/x11-clipboard", branch = "feat/store-batch", optional = true}
@@ -211,7 +211,7 @@ openssl = { version = "0.10", features = ["vendored"] }
 [target.'cfg(target_os = "android")'.dependencies]
 android_logger = "0.13"
 jni = "0.21"
-android-wakelock = { git = "https://github.com/rustdesk-org/android-wakelock" }
+android-wakelock = { git = "https://github.com/ox-desk-org/android-wakelock" }
 
 [workspace]
 members = ["libs/scrap", "libs/hbb_common", "libs/base", "libs/enigo", "libs/clipboard", "libs/virtual_display", "libs/virtual_display/dylib", "libs/portable", "libs/remote_printer"]
@@ -225,7 +225,7 @@ libxdo-sys = { path = "libs/libxdo-sys-stub" }
 # buys an allocation the size it names, bounded only by max_frame_size. This fork grows the read
 # buffer one read_buffer_size chunk at a time as the bytes actually arrive. Patched rather than
 # depended on directly, so tokio-tungstenite's own tungstenite resolves to the same copy.
-tungstenite = { git = "https://github.com/rustdesk-org/tungstenite-rs", rev = "efce47e5364f00a63302cf07ab1fb13ded478914" }
+tungstenite = { git = "https://github.com/ox-desk-org/tungstenite-rs", rev = "efce47e5364f00a63302cf07ab1fb13ded478914" }
 # One branch off upstream v0.13.0, the tag whose crate versions match this stack.
 # webrtc-util: reads the Windows adapter list's IPv6 addresses as host-order u16 groups, so every
 # one comes out byte-swapped, fails to bind, and ICE gathers no IPv6 host candidate on Windows;
@@ -251,15 +251,15 @@ tungstenite = { git = "https://github.com/rustdesk-org/tungstenite-rs", rev = "e
 # Pinned by rev, not branch: a fork branch can be rewritten out from under the lockfile.
 # webrtc: SettingEngine cannot reach the ICE agent's max_binding_requests, which decides how
 # long the answerer keeps checking a pair that has not answered yet.
-webrtc = { git = "https://github.com/rustdesk-org/webrtc", rev = "49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63" }
-webrtc-util = { git = "https://github.com/rustdesk-org/webrtc", rev = "49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63" }
-webrtc-sctp = { git = "https://github.com/rustdesk-org/webrtc", rev = "49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63" }
+webrtc = { git = "https://github.com/ox-desk-org/webrtc", rev = "49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63" }
+webrtc-util = { git = "https://github.com/ox-desk-org/webrtc", rev = "49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63" }
+webrtc-sctp = { git = "https://github.com/ox-desk-org/webrtc", rev = "49c89bd8d30e6e62e4c1a96cee38fdc11f79ef63" }
 
 [package.metadata.winres]
 LegalCopyright = "Copyright © 2026 Purslane Tech Pte. Ltd. All rights reserved."
-ProductName = "RustDesk"
-FileDescription = "RustDesk Remote Desktop"
-OriginalFilename = "rustdesk.exe"
+ProductName = "OX Desk"
+FileDescription = "OX Desk Remote Desktop"
+OriginalFilename = "ox-desk.exe"
 
 [target.'cfg(target_os="windows")'.build-dependencies]
 winres = "0.1"
@@ -276,8 +276,8 @@ docopt = "1.1"
 tokio = "1.44"
 
 [package.metadata.bundle]
-name = "RustDesk"
-identifier = "com.carriez.rustdesk"
+name = "OX Desk"
+identifier = "com.carriez.ox-desk"
 icon = ["res/32x32.png", "res/128x128.png", "res/128x128@2x.png"]
 osx_minimum_system_version = "10.14"
 

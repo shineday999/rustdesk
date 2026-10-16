@@ -33,7 +33,7 @@ fn make_tray() -> hbb_common::ResultType<()> {
     };
 
     // Duplicated tray icons kept piling up through the blind spots of
-    // `check_process("--tray", ..)`. https://github.com/rustdesk/rustdesk/issues/15689
+    // `check_process("--tray", ..)`. https://github.com/ox-desk/ox-desk/issues/15689
     #[cfg(windows)]
     if !crate::platform::windows::try_lock_tray_single_instance() {
         log::info!("Another tray process is already running in this session, exit");
@@ -146,7 +146,7 @@ fn make_tray() -> hbb_common::ResultType<()> {
         );
 
         if let tao::event::Event::NewEvents(tao::event::StartCause::Init) = event {
-            // for fixing https://github.com/rustdesk/rustdesk/discussions/10210#discussioncomment-14600745
+            // for fixing https://github.com/ox-desk/ox-desk/discussions/10210#discussioncomment-14600745
             // so we start tray, but not to show it
             if crate::ui_interface::get_builtin_option(keys::OPTION_HIDE_TRAY) == "Y" {
                 return;
@@ -268,7 +268,7 @@ async fn start_query_session_count(sender: std::sync::mpsc::Sender<Data>) {
     let mut last_count = 0;
     loop {
         if let Ok(mut c) = crate::ipc::connect(1000, "").await {
-            let mut timer = crate::rustdesk_interval(tokio::time::interval(Duration::from_secs(1)));
+            let mut timer = crate::ox-desk_interval(tokio::time::interval(Duration::from_secs(1)));
             loop {
                 tokio::select! {
                     res = c.next() => {

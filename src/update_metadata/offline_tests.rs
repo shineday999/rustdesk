@@ -29,43 +29,43 @@ fn verify_offline_for_package(
 
 #[test]
 fn offline_metadata_requires_the_expected_package_identity() {
-    const CUSTOM_PACKAGE_ID: &str = "com.example.rustdesk-custom";
+    const CUSTOM_PACKAGE_ID: &str = "com.example.ox-desk-custom";
     let mut custom_metadata = metadata();
     custom_metadata["package_id"] = json!(CUSTOM_PACKAGE_ID);
     let fixture = sign_fixture(custom_metadata, KEY_ID);
 
     assert!(
-        verify_offline_for_package(&fixture, "rustdesk-1.4.6-x86_64.exe", CUSTOM_PACKAGE_ID)
+        verify_offline_for_package(&fixture, "ox-desk-1.4.6-x86_64.exe", CUSTOM_PACKAGE_ID)
             .is_ok()
     );
-    assert!(verify_offline(&fixture, "rustdesk-1.4.6-x86_64.exe").is_err());
+    assert!(verify_offline(&fixture, "ox-desk-1.4.6-x86_64.exe").is_err());
 }
 
 #[test]
 fn accepts_signed_offline_artifact_from_custom_https_release() {
     let mut custom_metadata = metadata();
     custom_metadata["artifacts"][0]["url"] =
-        json!("https://updates.example.com/releases/v1.4.6/rustdesk-1.4.6-x86_64.exe");
+        json!("https://updates.example.com/releases/v1.4.6/ox-desk-1.4.6-x86_64.exe");
     let fixture = sign_fixture(custom_metadata, KEY_ID);
 
-    let artifact = verify_offline(&fixture, "rustdesk-1.4.6-x86_64.exe")
+    let artifact = verify_offline(&fixture, "ox-desk-1.4.6-x86_64.exe")
         .expect("verified custom HTTPS artifact");
 
-    assert_eq!("rustdesk-1.4.6-x86_64.exe", artifact.file_name);
+    assert_eq!("ox-desk-1.4.6-x86_64.exe", artifact.file_name);
 }
 
 #[test]
 fn rejects_signed_offline_artifact_from_unsafe_url() {
     for url in [
-        "http://updates.example.com/rustdesk-1.4.6-x86_64.exe",
-        "https://user@updates.example.com/rustdesk-1.4.6-x86_64.exe",
+        "http://updates.example.com/ox-desk-1.4.6-x86_64.exe",
+        "https://user@updates.example.com/ox-desk-1.4.6-x86_64.exe",
     ] {
         let mut invalid_metadata = metadata();
         invalid_metadata["artifacts"][0]["url"] = json!(url);
         let fixture = sign_fixture(invalid_metadata, KEY_ID);
 
         assert!(
-            verify_offline(&fixture, "rustdesk-1.4.6-x86_64.exe").is_err(),
+            verify_offline(&fixture, "ox-desk-1.4.6-x86_64.exe").is_err(),
             "{url}"
         );
     }
@@ -79,7 +79,7 @@ fn rejects_offline_artifact_name_or_release_mismatch() {
     invalid_metadata["version"] = json!("1.4.7");
     assert!(verify_offline(
         &sign_fixture(invalid_metadata, KEY_ID),
-        "rustdesk-1.4.6-x86_64.exe"
+        "ox-desk-1.4.6-x86_64.exe"
     )
     .is_err());
 }

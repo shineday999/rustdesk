@@ -11,7 +11,7 @@ use std::path::Path;
 
 pub use file::{copy_and_verify_update_file_sha256, VerifiedUpdateFile};
 
-const VERIFIED_UPDATE_FILE_PREFIX: &str = "rustdesk-verified-";
+const VERIFIED_UPDATE_FILE_PREFIX: &str = "ox-desk-verified-";
 const VERIFIED_EXE_FILENAME: &str = "update.exe";
 const VERIFIED_MSI_FILENAME: &str = "update.msi";
 const VERIFIED_UPDATE_COPY_FAILURE_EXIT_CODE: u32 = 0x5253_0009;

@@ -308,7 +308,7 @@ packages:
       path: "."
       ref: bd6b5b41254e57c5bcece202ebfb234de63e6487
       resolved-ref: bd6b5b41254e57c5bcece202ebfb234de63e6487
-      url: "https://github.com/rustdesk-org/Dash-Chat-2"
+      url: "https://github.com/ox-desk-org/Dash-Chat-2"
     source: git
     version: "0.0.18"
   dbus:
@@ -341,7 +341,7 @@ packages:
       path: "."
       ref: "cddc2e64f8fefce4f80db87b20bcda2dd019bed6"
       resolved-ref: "cddc2e64f8fefce4f80db87b20bcda2dd019bed6"
-      url: "https://github.com/rustdesk-org/rustdesk_desktop_multi_window"
+      url: "https://github.com/ox-desk-org/ox-desk_desktop_multi_window"
     source: git
     version: "0.1.0"
   device_info_plus:
@@ -382,7 +382,7 @@ packages:
       path: "."
       ref: "24cb88413fa5181d949ddacbb30a65d5c459e7d9"
       resolved-ref: "24cb88413fa5181d949ddacbb30a65d5c459e7d9"
-      url: "https://github.com/rustdesk-org/dynamic_layouts.git"
+      url: "https://github.com/ox-desk-org/dynamic_layouts.git"
     source: git
     version: "0.0.1+1"
   equatable:
@@ -524,7 +524,7 @@ packages:
       path: "."
       ref: db63b785c38153603e9fb84b50d3ec46f0d7e05e
       resolved-ref: db63b785c38153603e9fb84b50d3ec46f0d7e05e
-      url: "https://github.com/rustdesk-org/flutter_custom_cursor"
+      url: "https://github.com/ox-desk-org/flutter_custom_cursor"
     source: git
     version: "0.0.3"
   flutter_gpu_texture_renderer:
@@ -533,7 +533,7 @@ packages:
       path: "."
       ref: "08a471bb8ceccdd50483c81cdfa8b81b07b14b87"
       resolved-ref: "08a471bb8ceccdd50483c81cdfa8b81b07b14b87"
-      url: "https://github.com/rustdesk-org/flutter_gpu_texture_renderer"
+      url: "https://github.com/ox-desk-org/flutter_gpu_texture_renderer"
     source: git
     version: "0.0.1"
   flutter_keyboard_visibility:
@@ -1293,7 +1293,7 @@ packages:
       path: "."
       ref: "42797e0f03141dc2b585f76c64a13974508058b4"
       resolved-ref: "42797e0f03141dc2b585f76c64a13974508058b4"
-      url: "https://github.com/rustdesk-org/flutter_texture_rgba_renderer"
+      url: "https://github.com/ox-desk-org/flutter_texture_rgba_renderer"
     source: git
     version: "0.0.16"
   timing:
@@ -1334,7 +1334,7 @@ packages:
       path: uni_links
       ref: f416118d843a7e9ed117c7bb7bdc2deda5a9e86f
       resolved-ref: f416118d843a7e9ed117c7bb7bdc2deda5a9e86f
-      url: "https://github.com/rustdesk-org/uni_links"
+      url: "https://github.com/ox-desk-org/uni_links"
     source: git
     version: "0.5.1"
   uni_links_desktop:
@@ -1583,7 +1583,7 @@ packages:
       path: "."
       ref: cf4aef0512092fad9344a27ffe1c47ad83269dfc
       resolved-ref: cf4aef0512092fad9344a27ffe1c47ad83269dfc
-      url: "https://github.com/rustdesk-org/window_manager"
+      url: "https://github.com/ox-desk-org/window_manager"
     source: git
     version: "0.3.6"
   window_size:

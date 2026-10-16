@@ -1,11 +1,11 @@
-#  RustDesk 기여하기
+#  OX Desk 기여하기
 
-RustDesk는 모든 분들의 참여를 환영합니다. 저희를 도와주실 생각이 있으시다면 
+OX Desk는 모든 분들의 참여를 환영합니다. 저희를 도와주실 생각이 있으시다면 
  다음 지침을 따르세요:
 
 ## 기여
 
-RustDesk 또는 그 종속성에 대한 기여는 GitHub 풀 리퀘스트 형태로 
+OX Desk 또는 그 종속성에 대한 기여는 GitHub 풀 리퀘스트 형태로 
 이루어져야 합니다. 각 풀 리퀘스트는 핵심 기여자 (패치 적용 권한이 
 있는 사람)가 검토하여 메인 트리에 추가하거나 필요한 변경 사항에
 대한 피드백을 제공합니다. 핵심 기여자의 기여를 포함하여 모든 기여는
@@ -31,7 +31,7 @@ RustDesk 또는 그 종속성에 대한 기여는 GitHub 풀 리퀘스트 형태
 
 - 패치가 검토되지 않거나 특정인이 검토해야 하는 경우, 풀 리퀘스트나
   댓글에서 검토자에게 @-답글을 보내 검토를 요청하거나
- [이메일](mailto:info@rustdesk.com)을 통해 검토를 요청할 수 있습니다.
+ [이메일](mailto:info@ox-desk.com)을 통해 검토를 요청할 수 있습니다.
 
 - 수정된 버그 또는 새 기능과 관련된 테스트를 추가합니다.
 
@@ -39,8 +39,8 @@ RustDesk 또는 그 종속성에 대한 기여는 GitHub 풀 리퀘스트 형태
 
 ## 행동 강령
 
-https://github.com/rustdesk/rustdesk/blob/master/docs/CODE_OF_CONDUCT.md
+https://github.com/ox-desk/ox-desk/blob/master/docs/CODE_OF_CONDUCT.md
 
 ## 커뮤니케이션
 
-RustDesk 기여자들은 [Discord](https://discord.gg/nDceKgxnkV)에서 활동하고 있습니다.
+OX Desk 기여자들은 [Discord](https://discord.gg/nDceKgxnkV)에서 활동하고 있습니다.

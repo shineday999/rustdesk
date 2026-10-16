@@ -134,16 +134,16 @@ fn try_log(err: &String) {
 // of them falls back to displaying the key and still reads as a sentence.
 const WAYLAND_DECLINED: &str = "The screen sharing request was declined on the remote device";
 const WAYLAND_TIMED_OUT: &str = "The screen sharing request timed out on the remote device";
-const WAYLAND_NO_SESSION: &str = "RustDesk cannot reach the desktop session on the remote device, check that a desktop session is running and that RustDesk can use it";
+const WAYLAND_NO_SESSION: &str = "OX Desk cannot reach the desktop session on the remote device, check that a desktop session is running and that OX Desk can use it";
 const WAYLAND_UNSUPPORTED: &str = "The desktop portal on the remote device is missing a capability needed for screen sharing or remote control, its backend may not be installed";
 const WAYLAND_PIPEWIRE_HANDOVER: &str = "Screen sharing was approved on the remote device, but the PipeWire connection could not be opened";
 const WAYLAND_ENDED: &str =
     "The screen sharing request ended without completing on the remote device";
 // The remedy the message it replaces used to carry, minus the link: this is the outcome
-// rustdesk/rustdesk#8600 is about.
-const WAYLAND_NO_USABLE_SCREEN: &str = "RustDesk could not obtain a usable screen from the XDG Desktop Portal, the PipeWire library may be too old";
+// ox-desk/ox-desk#8600 is about.
+const WAYLAND_NO_USABLE_SCREEN: &str = "OX Desk could not obtain a usable screen from the XDG Desktop Portal, the PipeWire library may be too old";
 const WAYLAND_GST_UNAVAILABLE: &str =
-    "RustDesk could not load a GStreamer component needed for screen capture ({})";
+    "OX Desk could not load a GStreamer component needed for screen capture ({})";
 
 const WAYLAND_STAGE_TAG: &str = "wl-stage:";
 
@@ -222,7 +222,7 @@ mod tests {
         let gst = staged_message("gst-plugin:unavailable:pipewiresrc", false);
         assert_eq!(
             gst,
-            "RustDesk could not load a GStreamer component needed for screen capture ({pipewiresrc})"
+            "OX Desk could not load a GStreamer component needed for screen capture ({pipewiresrc})"
         );
         let open = gst.find('{').expect("no placeholder");
         let close = gst[open..].find('}').expect("unclosed placeholder") + open;
@@ -288,7 +288,7 @@ fn drm_desktop_rect_for_uinput() -> Option<(i32, i32, i32, i32)> {
 /// same three things, for the same reasons:
 ///
 /// - drops the cached Wayland layout first, because it can predate compositor changes made while no
-///   session was active (rustdesk#15601), and on the hotplug path it is stale by definition;
+///   session was active (ox-desk#15601), and on the hotplug path it is stale by definition;
 /// - bounds the IPC wait, because `uinput::client::set_resolution` reads its reply with no timeout of
 ///   its own, so a hung uinput socket would otherwise block every video-service start on this branch
 ///   and wedge the hotplug worker inside `rt.block_on`, leaving `UINPUT_REFRESH_BUSY` latched true so
@@ -438,7 +438,7 @@ pub(super) async fn check_init() -> ResultType<()> {
         if empty {
             if crate::input_service::wayland_use_uinput() {
                 // The cached layout may predate compositor changes made while no session
-                // was active, https://github.com/rustdesk/rustdesk/issues/15601
+                // was active, https://github.com/ox-desk/ox-desk/issues/15601
                 // Read before the rect: an apply that races a layout move is recorded under the
                 // older generation, which only streams built before the move measure under.
                 #[cfg(feature = "drm")]
@@ -802,7 +802,7 @@ pub(super) fn get_capturer_for_display(
                     // `logical_size` field and never touches `physical_size`, so the rect is not
                     // logical. The advertised DRM geometry is physical too, in DELIVERED
                     // orientation: `augment_with_wayland_geometry` transposes width/height for a
-                    // 90/270 output (rustdesk#15886). Whether the portal's caps arrive rotated
+                    // 90/270 output (ox-desk#15886). Whether the portal's caps arrive rotated
                     // is UNMEASURED on a rotated display (pipewiresrc does not apply
                     // SPA_META_VideoTransform), so the size half accepts either orientation
                     // rather than gambling a permanent offline on one of them. Dividing a side

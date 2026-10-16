@@ -1,10 +1,10 @@
 [package]
 name = "base"
 version = "0.1.0"
-authors = ["rustdesk <info@rustdesk.com>"]
+authors = ["ox-desk <info@ox-desk.com>"]
 edition = "2018"
 
-# Code that only RustDesk itself uses. `hbb_common` stays the crate shared with
+# Code that only OX Desk itself uses. `hbb_common` stays the crate shared with
 # the server, so anything the server never touches belongs here instead.
 
 [features]

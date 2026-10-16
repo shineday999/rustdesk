@@ -75,7 +75,7 @@ fn write_install_script(cmds: String) -> ResultType<InstallCommandScript> {
     let commands = prepare_install_commands(&cmds)?;
     let expected_hash = Sha256::digest(commands.as_bytes()).into();
     let path = directory.join(format!(
-        "rustdesk_install_{}.bat",
+        "ox-desk_install_{}.bat",
         uuid::Uuid::new_v4().simple()
     ));
     let mut file = fs::OpenOptions::new()
@@ -211,23 +211,23 @@ mod tests {
     #[test]
     fn native_install_handoff_verifies_before_execution() {
         let marker = std::env::temp_dir().join(format!(
-            "rustdesk_install_marker_{}",
+            "ox-desk_install_marker_{}",
             uuid::Uuid::new_v4().simple()
         ));
         let runner_dir = std::env::temp_dir().join(format!(
-            "rustdesk_install_!RUSTDESK_HANDOFF_EXPAND!&^@()runner_{}",
+            "ox-desk_install_!RUSTDESK_HANDOFF_EXPAND!&^@()runner_{}",
             uuid::Uuid::new_v4().simple()
         ));
         std::fs::create_dir(&runner_dir).expect("runner directory should be created");
         let shortcut_commands = embedded_shortcut_commands(
-            shortcut_bytes(r"C:\RustDesk.exe", None, None)
+            shortcut_bytes(r"C:\OX Desk.exe", None, None)
                 .expect("native shortcut should be generated"),
             "test.lnk",
             "test",
         );
         let script = write_install_script(format!(
-            "if \"%PROGRAMDATA%\"==\"rustdesk_untrusted\" exit /b 77\r\n\
-             if \"%PUBLIC%\"==\"rustdesk_untrusted\" exit /b 77\r\n\
+            "if \"%PROGRAMDATA%\"==\"ox-desk_untrusted\" exit /b 77\r\n\
+             if \"%PUBLIC%\"==\"ox-desk_untrusted\" exit /b 77\r\n\
              {shortcut_commands}\r\n\
              > \"{}\" echo verified",
             marker.display()
@@ -313,8 +313,8 @@ mod tests {
         let cmd = get_system_executable(CMD_RELATIVE_PATH).expect("system cmd.exe should resolve");
         let mut command = std::process::Command::new(cmd);
         command
-            .env("PROGRAMDATA", "rustdesk_untrusted")
-            .env("PUBLIC", "rustdesk_untrusted")
+            .env("PROGRAMDATA", "ox-desk_untrusted")
+            .env("PUBLIC", "ox-desk_untrusted")
             .env("RUSTDESK_HANDOFF_EXPAND", "expanded");
         command.raw_arg(format!("/D /E:ON /V:ON /C {bootstrap}"));
         command

@@ -1,44 +1,44 @@
 <p align="center">
-  <img src="../res/logo-header.svg" alt="RustDesk - Seu desktop remoto"><br>
+  <img src="../res/logo-header.svg" alt="OX Desk - Seu desktop remoto"><br>
   <a href="#compilar">Compilar</a> •
   <a href="#como-compilar-com-o-docker">Docker</a> •
   <a href="#estrutura-de-arquivos">Estrutura</a> •
   <a href="#capturas-de-tela">Capturas de Tela</a><br>
   [<a href="../README.md">Inglês</a>] | [<a href="docs/README-UA.md">Ucraniano</a>] | [<a href="docs/README-CS.md">Tcheco</a>] | [<a href="docs/README-ZH.md">Chinês</a>] | [<a href="docs/README-HU.md">Húngaro</a>] | [<a href="docs/README-ES.md">Espanhol</a>] | [<a href="docs/README-FA.md">Persa</a>] | [<a href="docs/README-FR.md">Francês</a>] | [<a href="docs/README-DE.md">Alemão</a>] | [<a href="docs/README-PL.md">Polonês</a>] | [<a href="docs/README-ID.md">Indonésio</a>] | [<a href="docs/README-FI.md">Finlandês</a>] | [<a href="docs/README-ML.md">Malaiala</a>] | [<a href="docs/README-JP.md">Japonês</a>] | [<a href="docs/README-NL.md">Holandês</a>] | [<a href="docs/README-IT.md">Italiano</a>] | [<a href="docs/README-RU.md">Russo</a>] | [<a href="docs/README-EO.md">Esperanto</a>] | [<a href="docs/README-KR.md">Coreano</a>] | [<a href="docs/README-AR.md">Árabe</a>] | [<a href="docs/README-VN.md">Vietnamita</a>] | [<a href="docs/README-DA.md">Dinamarquês</a>] | [<a href="docs/README-GR.md">Grego</a>] | [<a href="docs/README-TR.md">Turco</a>] | [<a href="docs/README-NO.md">Norueguês</a>] | [<a href="docs/README-RO.md">Romeno</a>]<br>
-  <b>Precisamos da sua ajuda para traduzir este README, a <a href="https://github.com/rustdesk/rustdesk/tree/master/src/lang">Interface do RustDesk</a> e a <a href="https://github.com/rustdesk/doc.rustdesk.com">Documentação do RustDesk</a> para o seu idioma nativo</b>
+  <b>Precisamos da sua ajuda para traduzir este README, a <a href="https://github.com/ox-desk/ox-desk/tree/master/src/lang">Interface do OX Desk</a> e a <a href="https://github.com/ox-desk/doc.ox-desk.com">Documentação do OX Desk</a> para o seu idioma nativo</b>
 </p>
 
 > [!Caution]
 > **Aviso de Isenção de Responsabilidade por Uso Indevido:** <br>
-> Os desenvolvedores do RustDesk não toleram ou apoiam qualquer uso antiético ou ilegal deste software. O uso indevido, como acesso não autorizado, controle ou invasão de privacidade, viola estritamente nossas diretrizes. Os autores não são responsáveis por qualquer uso indevido do aplicativo.
+> Os desenvolvedores do OX Desk não toleram ou apoiam qualquer uso antiético ou ilegal deste software. O uso indevido, como acesso não autorizado, controle ou invasão de privacidade, viola estritamente nossas diretrizes. Os autores não são responsáveis por qualquer uso indevido do aplicativo.
 
 
-Converse conosco: [Discord](https://discord.gg/nDceKgxnkV) | [Twitter](https://twitter.com/rustdesk) | [Reddit](https://www.reddit.com/r/rustdesk) | [YouTube](https://www.youtube.com/@rustdesk)
+Converse conosco: [Discord](https://discord.gg/nDceKgxnkV) | [Twitter](https://twitter.com/ox-desk) | [Reddit](https://www.reddit.com/r/ox-desk) | [YouTube](https://www.youtube.com/@ox-desk)
 
-[![RustDesk Server Pro](https://img.shields.io/badge/RustDesk%20Server%20Pro-Advanced%20Features-blue)](https://rustdesk.com/pricing.html)
+[![OX Desk Server Pro](https://img.shields.io/badge/OX Desk%20Server%20Pro-Advanced%20Features-blue)](https://ox-desk.com/pricing.html)
 
-Mais uma solução de desktop remoto, escrita em Rust. Funciona imediatamente, sem necessidade de configuração. Você tem controle total dos seus dados, sem preocupações com segurança. Você pode usar nosso servidor de conexão/retransmissão (rendezvous/relay), [configurar o seu próprio](https://rustdesk.com/server) ou [escrever seu próprio servidor de conexão/retransmissão](https://github.com/rustdesk/rustdesk-server-demo).
+Mais uma solução de desktop remoto, escrita em Rust. Funciona imediatamente, sem necessidade de configuração. Você tem controle total dos seus dados, sem preocupações com segurança. Você pode usar nosso servidor de conexão/retransmissão (rendezvous/relay), [configurar o seu próprio](https://ox-desk.com/server) ou [escrever seu próprio servidor de conexão/retransmissão](https://github.com/ox-desk/ox-desk-server-demo).
 
 ![image](https://user-images.githubusercontent.com/71636191/171661982-430285f0-2e12-4b1d-9957-4a58e375304d.png)
 
-O RustDesk acolhe a contribuição de todos. Veja [CONTRIBUTING.md](docs/CONTRIBUTING.md) para ajuda em como começar.
+O OX Desk acolhe a contribuição de todos. Veja [CONTRIBUTING.md](docs/CONTRIBUTING.md) para ajuda em como começar.
 
-[**Perguntas Frequentes (FAQ)**](https://github.com/rustdesk/rustdesk/wiki/FAQ)
+[**Perguntas Frequentes (FAQ)**](https://github.com/ox-desk/ox-desk/wiki/FAQ)
 
-[**DOWNLOAD DOS BINÁRIOS**](https://github.com/rustdesk/rustdesk/releases)
+[**DOWNLOAD DOS BINÁRIOS**](https://github.com/ox-desk/ox-desk/releases)
 
-[**VERSÕES NIGHTLY (EM DESENVOLVIMENTO)**](https://github.com/rustdesk/rustdesk/releases/tag/nightly)
+[**VERSÕES NIGHTLY (EM DESENVOLVIMENTO)**](https://github.com/ox-desk/ox-desk/releases/tag/nightly)
 
 [<img src="https://f-droid.org/badge/get-it-on.png"
     alt="Baixe no F-Droid"
     height="80">](https://f-droid.org/en/packages/com.carriez.flutter_hbb)
 [<img src="https://flathub.org/api/badge?svg&locale=en"
     alt="Baixe no Flathub"
-    height="80">](https://flathub.org/apps/com.rustdesk.RustDesk)
+    height="80">](https://flathub.org/apps/com.ox-desk.OX Desk)
 
 ## Dependências
 
-As versões de desktop usam Flutter ou Sciter (descontinuado) para a interface gráfica (GUI). Este tutorial é apenas para o Sciter, por ser mais fácil e amigável para começar. Verifique nosso [CI](https://github.com/rustdesk/rustdesk/blob/master/.github/workflows/flutter-build.yml) para instruções de compilação da versão em Flutter.
+As versões de desktop usam Flutter ou Sciter (descontinuado) para a interface gráfica (GUI). Este tutorial é apenas para o Sciter, por ser mais fácil e amigável para começar. Verifique nosso [CI](https://github.com/ox-desk/ox-desk/blob/master/.github/workflows/flutter-build.yml) para instruções de compilação da versão em Flutter.
 
 Por favor, faça o download da biblioteca dinâmica do Sciter por conta própria.
 
@@ -57,7 +57,7 @@ Por favor, faça o download da biblioteca dinâmica do Sciter por conta própria
 
 - Execute `cargo run`
 
-## [Compilar](https://rustdesk.com/docs/en/dev/build/)
+## [Compilar](https://ox-desk.com/docs/en/dev/build/)
 
 ## Como Compilar no Linux
 
@@ -115,8 +115,8 @@ cd
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
-git clone --recurse-submodules https://github.com/rustdesk/rustdesk
-cd rustdesk
+git clone --recurse-submodules https://github.com/ox-desk/ox-desk
+cd ox-desk
 mkdir -p target/debug
 wget https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/libsciter-gtk.so
 mv libsciter-gtk.so target/debug
@@ -128,51 +128,51 @@ VCPKG_ROOT=$HOME/vcpkg cargo run
 Comece clonando o repositório e construindo o contêiner Docker:
 
 ```sh
-git clone https://github.com/rustdesk/rustdesk
-cd rustdesk
+git clone https://github.com/ox-desk/ox-desk
+cd ox-desk
 git submodule update --init --recursive
-docker build -t "rustdesk-builder" .
+docker build -t "ox-desk-builder" .
 ```
 
 Depois, cada vez que precisar compilar o aplicativo, execute o seguinte comando:
 
 ```sh
-docker run --rm -it -v $PWD:/home/user/rustdesk -v rustdesk-git-cache:/home/user/.cargo/git -v rustdesk-registry-cache:/home/user/.cargo/registry -e PUID="$(id -u)" -e PGID="$(id -g)" rustdesk-builder
+docker run --rm -it -v $PWD:/home/user/ox-desk -v ox-desk-git-cache:/home/user/.cargo/git -v ox-desk-registry-cache:/home/user/.cargo/registry -e PUID="$(id -u)" -e PGID="$(id -g)" ox-desk-builder
 ```
 
 Note que a primeira compilação pode demorar mais até que as dependências sejam armazenadas em cache; as compilações subsequentes serão mais rápidas. Além disso, se você precisar especificar argumentos diferentes para o comando de compilação, poderá fazê-lo ao final do comando na posição `<ARGUMENTOS-OPCIONAIS>`. Por exemplo, se você quiser compilar uma versão de lançamento (release) otimizada, executaria o comando acima seguido de `--release`. O executável resultante estará disponível na pasta `target` do seu sistema e pode ser executado com:
 
 ```sh
-target/debug/rustdesk
+target/debug/ox-desk
 ```
 
 Ou, se estiver executando o executável de lançamento:
 
 ```sh
-target/release/rustdesk
+target/release/ox-desk
 ```
 
-Certifique-se de executar esses comandos a partir da raiz do repositório do RustDesk, do contrário o aplicativo pode não encontrar os recursos necessários. Note também que outros subcomandos do cargo, como `install` ou `run`, não são suportados atualmente por este método, pois instalariam ou executariam o programa dentro do contêiner em vez de no sistema hospedeiro.
+Certifique-se de executar esses comandos a partir da raiz do repositório do OX Desk, do contrário o aplicativo pode não encontrar os recursos necessários. Note também que outros subcomandos do cargo, como `install` ou `run`, não são suportados atualmente por este método, pois instalariam ou executariam o programa dentro do contêiner em vez de no sistema hospedeiro.
 
 ## Estrutura de Arquivos
 
-- **[libs/hbb_common](https://github.com/rustdesk/rustdesk/tree/master/libs/hbb_common)**: codec de vídeo, configuração, encapsulador (wrapper) tcp/udp, protobuf, funções de sistema de arquivos para transferência de arquivos e algumas outras funções utilitárias.
-- **[libs/scrap](https://github.com/rustdesk/rustdesk/tree/master/libs/scrap)**: captura de tela.
-- **[libs/enigo](https://github.com/rustdesk/rustdesk/tree/master/libs/enigo)**: controle de teclado/mouse específico de cada plataforma.
-- **[libs/clipboard](https://github.com/rustdesk/rustdesk/tree/master/libs/clipboard)**: implementação de copiar e colar arquivos para Windows, Linux e macOS.
-- **[src/ui](https://github.com/rustdesk/rustdesk/tree/master/src/ui)**: interface Sciter antiga (descontinuada).
-- **[src/server](https://github.com/rustdesk/rustdesk/tree/master/src/server)**: serviços de áudio/área de transferência/entrada/vídeo e conexões de rede.
-- **[src/client.rs](https://github.com/rustdesk/rustdesk/tree/master/src/client.rs)**: inicia uma conexão direta (peer connection).
-- **[src/rendezvous_mediator.rs](https://github.com/rustdesk/rustdesk/tree/master/src/rendezvous_mediator.rs)**: Comunica-se com o [rustdesk-server](https://github.com/rustdesk/rustdesk-server), aguarda por conexão remota direta (perfuração de túnel TCP / hole punching) ou retransmitida.
-- **[src/platform](https://github.com/rustdesk/rustdesk/tree/master/src/platform)**: código específico de cada plataforma.
-- **[flutter](https://github.com/rustdesk/rustdesk/tree/master/flutter)**: código Flutter para desktop e dispositivos móveis.
+- **[libs/hbb_common](https://github.com/ox-desk/ox-desk/tree/master/libs/hbb_common)**: codec de vídeo, configuração, encapsulador (wrapper) tcp/udp, protobuf, funções de sistema de arquivos para transferência de arquivos e algumas outras funções utilitárias.
+- **[libs/scrap](https://github.com/ox-desk/ox-desk/tree/master/libs/scrap)**: captura de tela.
+- **[libs/enigo](https://github.com/ox-desk/ox-desk/tree/master/libs/enigo)**: controle de teclado/mouse específico de cada plataforma.
+- **[libs/clipboard](https://github.com/ox-desk/ox-desk/tree/master/libs/clipboard)**: implementação de copiar e colar arquivos para Windows, Linux e macOS.
+- **[src/ui](https://github.com/ox-desk/ox-desk/tree/master/src/ui)**: interface Sciter antiga (descontinuada).
+- **[src/server](https://github.com/ox-desk/ox-desk/tree/master/src/server)**: serviços de áudio/área de transferência/entrada/vídeo e conexões de rede.
+- **[src/client.rs](https://github.com/ox-desk/ox-desk/tree/master/src/client.rs)**: inicia uma conexão direta (peer connection).
+- **[src/rendezvous_mediator.rs](https://github.com/ox-desk/ox-desk/tree/master/src/rendezvous_mediator.rs)**: Comunica-se com o [ox-desk-server](https://github.com/ox-desk/ox-desk-server), aguarda por conexão remota direta (perfuração de túnel TCP / hole punching) ou retransmitida.
+- **[src/platform](https://github.com/ox-desk/ox-desk/tree/master/src/platform)**: código específico de cada plataforma.
+- **[flutter](https://github.com/ox-desk/ox-desk/tree/master/flutter)**: código Flutter para desktop e dispositivos móveis.
 
 ## Capturas de Tela
 
-![Gerenciador de Conexões](https://github.com/rustdesk/rustdesk/assets/28412477/db82d4e7-c4bc-4823-8e6f-6af7eadf7651)
+![Gerenciador de Conexões](https://github.com/ox-desk/ox-desk/assets/28412477/db82d4e7-c4bc-4823-8e6f-6af7eadf7651)
 
-![Conectado a um PC Windows](https://github.com/rustdesk/rustdesk/assets/28412477/9baa91e9-3362-4d06-aa1a-7518edcbd7ea)
+![Conectado a um PC Windows](https://github.com/ox-desk/ox-desk/assets/28412477/9baa91e9-3362-4d06-aa1a-7518edcbd7ea)
 
-![Transferência de Arquivos](https://github.com/rustdesk/rustdesk/assets/28412477/39511ad3-aa9a-4f8c-8947-1cce286a46ad)
+![Transferência de Arquivos](https://github.com/ox-desk/ox-desk/assets/28412477/39511ad3-aa9a-4f8c-8947-1cce286a46ad)
 
-![Tunelamento TCP](https://github.com/rustdesk/rustdesk/assets/28412477/78e8708f-e87e-4570-8373-1360033ea6c5)
+![Tunelamento TCP](https://github.com/ox-desk/ox-desk/assets/28412477/78e8708f-e87e-4570-8373-1360033ea6c5)

@@ -43,7 +43,7 @@ pub(super) fn path() -> ResultType<PathBuf> {
         }
     }
     Ok(temporary.join(format!(
-        "rustdesk-install-{}",
+        "ox-desk-install-{}",
         uuid::Uuid::new_v4().simple()
     )))
 }
@@ -107,7 +107,7 @@ mod tests {
         // The user-owned parent allows cleanup through DELETE_CHILD. AccessCheck
         // below checks the child's DACL, not that separate parent permission.
         let directory = std::env::temp_dir().join(format!(
-            "rustdesk_installer_acl_{}",
+            "ox-desk_installer_acl_{}",
             uuid::Uuid::new_v4().simple()
         ));
         create(&directory).expect("production directory creation should succeed");

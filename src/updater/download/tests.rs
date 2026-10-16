@@ -3,15 +3,15 @@ use super::*;
 #[test]
 fn copy_and_verify_update_artifact_hashes_open_file_handle() {
     let test_dir = std::env::temp_dir().join(format!(
-        "rustdesk-updater-open-handle-sha256-test-{}",
+        "ox-desk-updater-open-handle-sha256-test-{}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&test_dir);
     std::fs::create_dir_all(&test_dir).unwrap();
-    let final_path = test_dir.join("rustdesk-update.exe");
+    let final_path = test_dir.join("ox-desk-update.exe");
     let (mut file, _) = create_download_temp_file(&final_path).unwrap();
     let display_path = test_dir.join("path-must-not-be-opened.download");
-    let mut data: &[u8] = b"rustdesk";
+    let mut data: &[u8] = b"ox-desk";
 
     let result = copy_and_verify_update_artifact(
         &mut file,
@@ -35,12 +35,12 @@ fn copy_and_verify_update_artifact_hashes_open_file_handle() {
 #[test]
 fn verified_download_replaces_symlink_without_touching_target() {
     let test_dir = std::env::temp_dir().join(format!(
-        "rustdesk-updater-symlink-test-{}",
+        "ox-desk-updater-symlink-test-{}",
         std::process::id()
     ));
     let _ = std::fs::remove_dir_all(&test_dir);
     std::fs::create_dir_all(&test_dir).unwrap();
-    let final_path = test_dir.join("rustdesk-update.exe");
+    let final_path = test_dir.join("ox-desk-update.exe");
     let victim_path = test_dir.join("victim");
     std::fs::write(&victim_path, b"victim").unwrap();
     std::os::unix::fs::symlink(&victim_path, &final_path).unwrap();

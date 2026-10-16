@@ -1,43 +1,43 @@
 <p align="center">
-  <img src="../res/logo-header.svg" alt="RustDesk - Ваш віддалений робочий стіл"><br>
+  <img src="../res/logo-header.svg" alt="OX Desk - Ваш віддалений робочий стіл"><br>
   <a href="#кроки-для-збірки">Збірка</a> •
   <a href="#як-зібрати-за-допомогою-docker">Docker</a> •
   <a href="#структура-файлів">Структура</a> •
   <a href="#знімки-екрана">Знімки екрана</a><br>
   [<a href="../README.md">English</a>] | [<a href="README-CS.md">česky</a>] | [<a href="README-ZH.md">中文</a>] | [<a href="README-HU.md">Magyar</a>] | [<a href="README-ES.md">Español</a>] | [<a href="README-FA.md">فارسی</a>] | [<a href="README-FR.md">Français</a>] | [<a href="README-DE.md">Deutsch</a>] | [<a href="README-PL.md">Polski</a>] | [<a href="README-ID.md">Indonesian</a>] | [<a href="README-FI.md">Suomi</a>] | [<a href="README-ML.md">മലയാളം</a>] | [<a href="README-JP.md">日本語</a>] | [<a href="README-NL.md">Nederlands</a>] | [<a href="README-IT.md">Italiano</a>] | [<a href="README-RU.md">Русский</a>] | [<a href="README-PTBR.md">Português (Brasil)</a>] | [<a href="README-EO.md">Esperanto</a>] | [<a href="README-KR.md">한국어</a>] | [<a href="README-AR.md">العربي</a>] | [<a href="README-VN.md">Tiếng Việt</a>] | [<a href="README-DA.md">Dansk</a>] | [<a href="README-GR.md">Ελληνικά</a>] | [<a href="README-TR.md">Türkçe</a>] | [<a href="README-NO.md">Norsk</a>] | [<a href="README-RO.md">Română</a>]<br>
-  <b>Нам потрібна ваша допомога з перекладом цього README, <a href="https://github.com/rustdesk/rustdesk/tree/master/src/lang">інтерфейсу RustDesk</a> та <a href="https://github.com/rustdesk/doc.rustdesk.com">документації RustDesk</a> вашою рідною мовою</b>
+  <b>Нам потрібна ваша допомога з перекладом цього README, <a href="https://github.com/ox-desk/ox-desk/tree/master/src/lang">інтерфейсу OX Desk</a> та <a href="https://github.com/ox-desk/doc.ox-desk.com">документації OX Desk</a> вашою рідною мовою</b>
 </p>
 
 > [!CAUTION]
 > **Застереження щодо неналежного використання:** <br>
-> Розробники RustDesk не схвалюють і не підтримують неетичне або незаконне використання цього програмного забезпечення. Неналежне використання, зокрема несанкціонований доступ, керування або втручання в приватність, суворо суперечить нашим правилам. Автори не несуть відповідальності за неналежне використання застосунку.
+> Розробники OX Desk не схвалюють і не підтримують неетичне або незаконне використання цього програмного забезпечення. Неналежне використання, зокрема несанкціонований доступ, керування або втручання в приватність, суворо суперечить нашим правилам. Автори не несуть відповідальності за неналежне використання застосунку.
 
-Спілкуйтеся з нами: [Discord](https://discord.gg/nDceKgxnkV) | [Twitter](https://twitter.com/rustdesk) | [Reddit](https://www.reddit.com/r/rustdesk) | [YouTube](https://www.youtube.com/@rustdesk)
+Спілкуйтеся з нами: [Discord](https://discord.gg/nDceKgxnkV) | [Twitter](https://twitter.com/ox-desk) | [Reddit](https://www.reddit.com/r/ox-desk) | [YouTube](https://www.youtube.com/@ox-desk)
 
-[![RustDesk Server Pro](https://img.shields.io/badge/RustDesk%20Server%20Pro-Advanced%20Features-blue)](https://rustdesk.com/pricing.html)
+[![OX Desk Server Pro](https://img.shields.io/badge/OX Desk%20Server%20Pro-Advanced%20Features-blue)](https://ox-desk.com/pricing.html)
 
-RustDesk — ще одне рішення для віддаленого робочого столу, написане на Rust. Працює одразу після запуску й не потребує налаштування. Ви повністю контролюєте свої дані та їхню безпеку. Можна використовувати наш rendezvous/relay-сервер, [налаштувати власний](https://rustdesk.com/server) або [написати власний rendezvous/relay-сервер](https://github.com/rustdesk/rustdesk-server-demo).
+OX Desk — ще одне рішення для віддаленого робочого столу, написане на Rust. Працює одразу після запуску й не потребує налаштування. Ви повністю контролюєте свої дані та їхню безпеку. Можна використовувати наш rendezvous/relay-сервер, [налаштувати власний](https://ox-desk.com/server) або [написати власний rendezvous/relay-сервер](https://github.com/ox-desk/ox-desk-server-demo).
 
 ![image](https://user-images.githubusercontent.com/71636191/171661982-430285f0-2e12-4b1d-9957-4a58e375304d.png)
 
-RustDesk вітає внески від усіх охочих. Дивіться [CONTRIBUTING.md](CONTRIBUTING.md), щоб дізнатися, з чого почати.
+OX Desk вітає внески від усіх охочих. Дивіться [CONTRIBUTING.md](CONTRIBUTING.md), щоб дізнатися, з чого почати.
 
-[**FAQ**](https://github.com/rustdesk/rustdesk/wiki/FAQ)
+[**FAQ**](https://github.com/ox-desk/ox-desk/wiki/FAQ)
 
-[**ЗАВАНТАЖИТИ ГОТОВУ ЗБІРКУ**](https://github.com/rustdesk/rustdesk/releases)
+[**ЗАВАНТАЖИТИ ГОТОВУ ЗБІРКУ**](https://github.com/ox-desk/ox-desk/releases)
 
-[**НІЧНІ ЗБІРКИ**](https://github.com/rustdesk/rustdesk/releases/tag/nightly)
+[**НІЧНІ ЗБІРКИ**](https://github.com/ox-desk/ox-desk/releases/tag/nightly)
 
 [<img src="https://f-droid.org/badge/get-it-on.png"
     alt="Get it on F-Droid"
     height="80">](https://f-droid.org/en/packages/com.carriez.flutter_hbb)
 [<img src="https://flathub.org/api/badge?svg&locale=en"
     alt="Get it on Flathub"
-    height="80">](https://flathub.org/apps/com.rustdesk.RustDesk)
+    height="80">](https://flathub.org/apps/com.ox-desk.OX Desk)
 
 ## Залежності
 
-Версії для настільних ОС використовують Flutter або Sciter (застарілий) для графічного інтерфейсу. Ця інструкція стосується лише Sciter, оскільки з ним простіше почати. Для збірки версії на Flutter дивіться наш [CI](https://github.com/rustdesk/rustdesk/blob/master/.github/workflows/flutter-build.yml).
+Версії для настільних ОС використовують Flutter або Sciter (застарілий) для графічного інтерфейсу. Ця інструкція стосується лише Sciter, оскільки з ним простіше почати. Для збірки версії на Flutter дивіться наш [CI](https://github.com/ox-desk/ox-desk/blob/master/.github/workflows/flutter-build.yml).
 
 Динамічну бібліотеку Sciter потрібно завантажити окремо.
 
@@ -56,7 +56,7 @@ RustDesk вітає внески від усіх охочих. Дивіться 
 
 - Запустіть `cargo run`.
 
-## [Збирання](https://rustdesk.com/docs/en/dev/build/)
+## [Збирання](https://ox-desk.com/docs/en/dev/build/)
 
 ## Як зібрати на Linux 
 
@@ -116,8 +116,8 @@ cd
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
-git clone --recurse-submodules https://github.com/rustdesk/rustdesk
-cd rustdesk
+git clone --recurse-submodules https://github.com/ox-desk/ox-desk
+cd ox-desk
 mkdir -p target/debug
 wget https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/libsciter-gtk.so
 mv libsciter-gtk.so target/debug
@@ -129,53 +129,53 @@ VCPKG_ROOT=$HOME/vcpkg cargo run
 Спочатку клонуйте репозиторій і зберіть Docker-контейнер:
 
 ```sh
-git clone https://github.com/rustdesk/rustdesk
-cd rustdesk
+git clone https://github.com/ox-desk/ox-desk
+cd ox-desk
 git submodule update --init --recursive
-docker build -t "rustdesk-builder" .
+docker build -t "ox-desk-builder" .
 ```
 
 Після цього щоразу, коли потрібно зібрати застосунок, запускайте таку команду:
 
 ```sh
-docker run --rm -it -v $PWD:/home/user/rustdesk -v rustdesk-git-cache:/home/user/.cargo/git -v rustdesk-registry-cache:/home/user/.cargo/registry -e PUID="$(id -u)" -e PGID="$(id -g)" rustdesk-builder
+docker run --rm -it -v $PWD:/home/user/ox-desk -v ox-desk-git-cache:/home/user/.cargo/git -v ox-desk-registry-cache:/home/user/.cargo/registry -e PUID="$(id -u)" -e PGID="$(id -g)" ox-desk-builder
 ```
 
-Перша збірка може тривати довше, доки залежності не буде кешовано. Наступні збірки виконуватимуться швидше. Якщо потрібно передати додаткові аргументи команді збірки, додайте їх після `rustdesk-builder` у кінці команди `docker run`. Наприклад, для оптимізованої release-збірки додайте `--release`. Отриманий виконуваний файл буде доступний у каталозі `target` вашої системи та його можна запустити так:
+Перша збірка може тривати довше, доки залежності не буде кешовано. Наступні збірки виконуватимуться швидше. Якщо потрібно передати додаткові аргументи команді збірки, додайте їх після `ox-desk-builder` у кінці команди `docker run`. Наприклад, для оптимізованої release-збірки додайте `--release`. Отриманий виконуваний файл буде доступний у каталозі `target` вашої системи та його можна запустити так:
 
 ```sh
-target/debug/rustdesk
+target/debug/ox-desk
 ```
 
 Або, якщо використовується release-збірка:
 
 ```sh
-target/release/rustdesk
+target/release/ox-desk
 ```
 
-Запускайте ці команди з кореневого каталогу репозиторію RustDesk, інакше застосунок може не знайти потрібні ресурси. Також зверніть увагу, що інші підкоманди cargo, наприклад `install` або `run`, наразі не підтримуються цим способом, оскільки вони встановлюватимуть або запускатимуть програму всередині контейнера, а не на хост-системі.
+Запускайте ці команди з кореневого каталогу репозиторію OX Desk, інакше застосунок може не знайти потрібні ресурси. Також зверніть увагу, що інші підкоманди cargo, наприклад `install` або `run`, наразі не підтримуються цим способом, оскільки вони встановлюватимуть або запускатимуть програму всередині контейнера, а не на хост-системі.
 
 ## Структура файлів
 
-- **[libs/hbb_common](https://github.com/rustdesk/rustdesk/tree/master/libs/hbb_common)**: відеокодек, конфігурація, обгортка tcp/udp та інші допоміжні функції, спільні із сервером
-- **[libs/base](https://github.com/rustdesk/rustdesk/tree/master/libs/base)**: protobuf, функції файлової системи для передавання файлів, код клавіатури та платформоспецифічний код, що використовуються лише цим застосунком
-- **[libs/scrap](https://github.com/rustdesk/rustdesk/tree/master/libs/scrap)**: захоплення екрана
-- **[libs/enigo](https://github.com/rustdesk/rustdesk/tree/master/libs/enigo)**: платформоспецифічне керування клавіатурою та мишею
-- **[libs/clipboard](https://github.com/rustdesk/rustdesk/tree/master/libs/clipboard)**: реалізація копіювання та вставлення файлів для Windows, Linux і macOS
-- **[src/ui](https://github.com/rustdesk/rustdesk/tree/master/src/ui)**: застарілий інтерфейс Sciter (deprecated)
-- **[src/server](https://github.com/rustdesk/rustdesk/tree/master/src/server)**: служби аудіо, буфера обміну, введення та відео, а також мережеві з'єднання
-- **[src/client.rs](https://github.com/rustdesk/rustdesk/tree/master/src/client.rs)**: встановлення однорангового з'єднання
-- **[src/rendezvous_mediator.rs](https://github.com/rustdesk/rustdesk/tree/master/src/rendezvous_mediator.rs)**: зв'язок із [rustdesk-server](https://github.com/rustdesk/rustdesk-server), очікування прямого віддаленого з'єднання (TCP hole punching) або з'єднання через ретранслятор
-- **[src/platform](https://github.com/rustdesk/rustdesk/tree/master/src/platform)**: платформоспецифічний код
-- **[flutter](https://github.com/rustdesk/rustdesk/tree/master/flutter)**: код Flutter для настільних і мобільних платформ
+- **[libs/hbb_common](https://github.com/ox-desk/ox-desk/tree/master/libs/hbb_common)**: відеокодек, конфігурація, обгортка tcp/udp та інші допоміжні функції, спільні із сервером
+- **[libs/base](https://github.com/ox-desk/ox-desk/tree/master/libs/base)**: protobuf, функції файлової системи для передавання файлів, код клавіатури та платформоспецифічний код, що використовуються лише цим застосунком
+- **[libs/scrap](https://github.com/ox-desk/ox-desk/tree/master/libs/scrap)**: захоплення екрана
+- **[libs/enigo](https://github.com/ox-desk/ox-desk/tree/master/libs/enigo)**: платформоспецифічне керування клавіатурою та мишею
+- **[libs/clipboard](https://github.com/ox-desk/ox-desk/tree/master/libs/clipboard)**: реалізація копіювання та вставлення файлів для Windows, Linux і macOS
+- **[src/ui](https://github.com/ox-desk/ox-desk/tree/master/src/ui)**: застарілий інтерфейс Sciter (deprecated)
+- **[src/server](https://github.com/ox-desk/ox-desk/tree/master/src/server)**: служби аудіо, буфера обміну, введення та відео, а також мережеві з'єднання
+- **[src/client.rs](https://github.com/ox-desk/ox-desk/tree/master/src/client.rs)**: встановлення однорангового з'єднання
+- **[src/rendezvous_mediator.rs](https://github.com/ox-desk/ox-desk/tree/master/src/rendezvous_mediator.rs)**: зв'язок із [ox-desk-server](https://github.com/ox-desk/ox-desk-server), очікування прямого віддаленого з'єднання (TCP hole punching) або з'єднання через ретранслятор
+- **[src/platform](https://github.com/ox-desk/ox-desk/tree/master/src/platform)**: платформоспецифічний код
+- **[flutter](https://github.com/ox-desk/ox-desk/tree/master/flutter)**: код Flutter для настільних і мобільних платформ
 
 ## Знімки екрана
 
-![Менеджер підключень](https://github.com/rustdesk/rustdesk/assets/28412477/db82d4e7-c4bc-4823-8e6f-6af7eadf7651)
+![Менеджер підключень](https://github.com/ox-desk/ox-desk/assets/28412477/db82d4e7-c4bc-4823-8e6f-6af7eadf7651)
 
-![Підключення до ПК з Windows](https://github.com/rustdesk/rustdesk/assets/28412477/9baa91e9-3362-4d06-aa1a-7518edcbd7ea)
+![Підключення до ПК з Windows](https://github.com/ox-desk/ox-desk/assets/28412477/9baa91e9-3362-4d06-aa1a-7518edcbd7ea)
 
-![Передавання файлів](https://github.com/rustdesk/rustdesk/assets/28412477/39511ad3-aa9a-4f8c-8947-1cce286a46ad)
+![Передавання файлів](https://github.com/ox-desk/ox-desk/assets/28412477/39511ad3-aa9a-4f8c-8947-1cce286a46ad)
 
-![TCP-тунелювання](https://github.com/rustdesk/rustdesk/assets/28412477/78e8708f-e87e-4570-8373-1360033ea6c5)
+![TCP-тунелювання](https://github.com/ox-desk/ox-desk/assets/28412477/78e8708f-e87e-4570-8373-1360033ea6c5)
 

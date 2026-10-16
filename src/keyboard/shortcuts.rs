@@ -312,7 +312,7 @@ pub fn current() -> Arc<Bindings> {
 /// Match an `rdev::Event` against the cached bindings. Returns the matched
 /// action id, or `None` if no binding fires.
 ///
-/// A bound chord belongs to RustDesk: it is consumed even when the action is
+/// A bound chord belongs to OX Desk: it is consumed even when the action is
 /// unavailable in the current session (e.g. screenshot on a peer that does not
 /// support it), and the Flutter side then does nothing. It is never forwarded
 /// to the remote, so what a chord does depends on the binding alone, not on
@@ -356,7 +356,7 @@ pub fn match_event(event: &rdev::Event) -> Option<String> {
 #[cfg(feature = "flutter")]
 lazy_static::lazy_static! {
     /// Physical keys whose press fired a shortcut and whose release has not
-    /// arrived yet. Every event of such a key belongs to RustDesk until its
+    /// arrived yet. Every event of such a key belongs to OX Desk until its
     /// release, whatever the modifiers do meanwhile: auto repeats and the
     /// release are consumed and never reach the remote.
     ///

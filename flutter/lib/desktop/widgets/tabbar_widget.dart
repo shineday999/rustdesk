@@ -421,7 +421,7 @@ class _DesktopTabState extends State<DesktopTab>
   // On Linux, GTK destroys the window on a close request unless prevent-close
   // is on. It is off for the cm and install windows, and onActiveWindowChanged()
   // turns it off to quit, so the window can no longer be saved or hidden.
-  // https://github.com/rustdesk/rustdesk/issues/16512
+  // https://github.com/ox-desk/ox-desk/issues/16512
   Future<bool> _isLinuxWindowClosed() async =>
       isLinux && isMainWindow && !await windowManager.isPreventClose();
 
@@ -651,7 +651,7 @@ class _DesktopTabState extends State<DesktopTab>
                         Offstage(
                             offstage: !showTitle,
                             child: const Text(
-                              "RustDesk",
+                              "OX Desk",
                               style: TextStyle(fontSize: 13),
                             ).marginOnly(left: 2))
                       ]).marginOnly(

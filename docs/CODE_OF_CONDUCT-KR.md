@@ -60,7 +60,7 @@
 ## 시행
 
 모욕적, 괴롭힘 또는 기타 용납할 수 없는 행동은
- [info@rustdesk.com](mailto:info@rustdesk.com)으로 법 집행을 담당하는 커뮤니티 리더에게 
+ [info@ox-desk.com](mailto:info@ox-desk.com)으로 법 집행을 담당하는 커뮤니티 리더에게 
 신고하실 수 있습니다.
 모든 불만 사항은 신속하고 공정하게 검토 및 조사됩니다.
 

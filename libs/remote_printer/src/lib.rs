@@ -7,7 +7,7 @@ pub use setup::{
 };
 
 #[cfg(target_os = "windows")]
-const RD_DRIVER_INF_PATH: &str = "drivers/RustDeskPrinterDriver/RustDeskPrinterDriver.inf";
+const RD_DRIVER_INF_PATH: &str = "drivers/OX DeskPrinterDriver/OX DeskPrinterDriver.inf";
 
 #[cfg(target_os = "windows")]
 fn get_printer_name(app_name: &str) -> Vec<u16> {
@@ -19,7 +19,7 @@ fn get_printer_name(app_name: &str) -> Vec<u16> {
 
 #[cfg(target_os = "windows")]
 fn get_driver_name() -> Vec<u16> {
-    "RustDesk v4 Printer Driver"
+    "OX Desk v4 Printer Driver"
         .encode_utf16()
         .chain(Some(0))
         .collect()

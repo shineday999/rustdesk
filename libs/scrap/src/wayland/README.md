@@ -1,6 +1,6 @@
 # About
 
-Derived from https://github.com/H-M-H/Weylus/tree/master/src/capturable with the author's consent, https://github.com/rustdesk/rustdesk/issues/56#issuecomment-882727967 
+Derived from https://github.com/H-M-H/Weylus/tree/master/src/capturable with the author's consent, https://github.com/ox-desk/ox-desk/issues/56#issuecomment-882727967 
 
 # Dep
 

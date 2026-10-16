@@ -1,4 +1,4 @@
-name: build RustDeskTempTopMostWindow
+name: build OX DeskTempTopMostWindow
 
 on:
   workflow_call:
@@ -31,23 +31,23 @@ env:
   project_path: WindowInjection/WindowInjection.vcxproj
 
 jobs:
-  build-RustDeskTempTopMostWindow:
+  build-OX DeskTempTopMostWindow:
     runs-on: ${{ inputs.target }}
     strategy:
         fail-fast: false
     env:
-      build_output_dir: RustDeskTempTopMostWindow/WindowInjection/${{ inputs.platform }}/${{ inputs.configuration }}
+      build_output_dir: OX DeskTempTopMostWindow/WindowInjection/${{ inputs.platform }}/${{ inputs.configuration }}
     steps:
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce # v2
 
       - name: Download the source code
         run: |
-          git clone https://github.com/rustdesk-org/RustDeskTempTopMostWindow RustDeskTempTopMostWindow
+          git clone https://github.com/ox-desk-org/OX DeskTempTopMostWindow OX DeskTempTopMostWindow
 
       - name: Build the project
         run: |
-          cd RustDeskTempTopMostWindow && git checkout ecd8d6a139eee76845ea66423fb739af450fda90
+          cd OX DeskTempTopMostWindow && git checkout ecd8d6a139eee76845ea66423fb739af450fda90
           msbuild ${{ env.project_path }} -p:Configuration=${{ inputs.configuration }} -p:Platform=${{ inputs.platform }} /p:TargetVersion=${{ inputs.target_version }}
 
       - name: Archive build artifacts

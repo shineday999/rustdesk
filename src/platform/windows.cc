@@ -19,7 +19,7 @@ extern "C" uint32_t get_session_user_info(PWSTR bufin, uint32_t nin, uint32_t id
 
 void flog(char const *fmt, ...)
 {
-    FILE *h = fopen("C:\\Windows\\temp\\test_rustdesk.log", "at");
+    FILE *h = fopen("C:\\Windows\\temp\\test_ox-desk.log", "at");
     if (!h)
         return;
     va_list arg;
@@ -571,7 +571,7 @@ extern "C"
         DWORD count;
         auto rdp = "rdp";
         auto nrdp = strlen(rdp);
-        // https://github.com/rustdesk/rustdesk/discussions/937#discussioncomment-12373814 citrix session
+        // https://github.com/ox-desk/ox-desk/discussions/937#discussioncomment-12373814 citrix session
         auto ica = "ica";
         auto nica = strlen(ica);
         if (WTSEnumerateSessionsA(WTS_CURRENT_SERVER_HANDLE, NULL, 1, &pInfos, &count))

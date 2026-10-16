@@ -10,7 +10,7 @@ use hbb_common::protobuf::MessageField;
 use scrap::Display;
 use std::sync::atomic::{AtomicBool, Ordering};
 
-// https://github.com/rustdesk/rustdesk/discussions/6042, avoiding dbus call
+// https://github.com/ox-desk/ox-desk/discussions/6042, avoiding dbus call
 
 pub const NAME: &'static str = "display";
 
@@ -47,7 +47,7 @@ struct WaylandUinputRect {
 // Per-display layout used to correct injected coordinates when the compositor moves a
 // monitor mid-session. The client keeps sending coordinates offset by the layout it was
 // told at session init (`baseline`); we remap them onto the current layout (`live`).
-// https://github.com/rustdesk/rustdesk/issues/15601
+// https://github.com/ox-desk/ox-desk/issues/15601
 #[cfg(target_os = "linux")]
 #[derive(Default)]
 struct WaylandLayout {
@@ -321,7 +321,7 @@ pub(super) fn remap_wayland_uinput_coord(x: i32, y: i32) -> (i32, i32) {
 // The uinput absolute range is set when the session inits. If the compositor layout
 // changes afterwards (monitor scale/position change, or a portal virtual output
 // appearing once the capture starts), injected coordinates get rescaled by the stale
-// range and land offset, https://github.com/rustdesk/rustdesk/issues/15601
+// range and land offset, https://github.com/ox-desk/ox-desk/issues/15601
 #[cfg(target_os = "linux")]
 fn refresh_wayland_uinput_rect_if_changed() {
     if is_x11() || !crate::input_service::wayland_use_uinput() {
@@ -360,7 +360,7 @@ fn refresh_wayland_uinput_rect_if_changed() {
         (live_changed, drifted)
     };
     // Single owner of the generation bump: on the cache clear it let every session init tear
-    // down every other live capturer. Baseline promotes with the clear (rustdesk#15601).
+    // down every other live capturer. Baseline promotes with the clear (ox-desk#15601).
     #[cfg(feature = "drm")]
     {
         // An edge seen while DRM is transiently non-Available stays OWED rather than consumed.
@@ -494,7 +494,7 @@ fn refresh_wayland_uinput_rect_if_changed() {
     }
 }
 
-// https://github.com/rustdesk/rustdesk/pull/8537
+// https://github.com/ox-desk/ox-desk/pull/8537
 static TEMP_IGNORE_DISPLAYS_CHANGED: AtomicBool = AtomicBool::new(false);
 
 #[derive(Default)]
@@ -690,7 +690,7 @@ pub fn check_displays_changed() -> ResultType<()> {
     #[cfg(target_os = "linux")]
     {
         // Currently, wayland need to call wayland::clear() before call Display::all(), otherwise it will cause
-        // block, or even crash here, https://github.com/rustdesk/rustdesk/blob/0bb4d43e9ea9d9dfb9c46c8d27d1a97cd0ad6bea/libs/scrap/src/wayland/pipewire.rs#L235
+        // block, or even crash here, https://github.com/ox-desk/ox-desk/blob/0bb4d43e9ea9d9dfb9c46c8d27d1a97cd0ad6bea/libs/scrap/src/wayland/pipewire.rs#L235
         if !is_x11() {
             return Ok(());
         }
@@ -739,11 +739,11 @@ pub(super) fn get_original_resolution(
     h: usize,
 ) -> MessageField<Resolution> {
     #[cfg(windows)]
-    let is_rustdesk_virtual_display =
-        crate::virtual_display_manager::rustdesk_idd::is_virtual_display(&display_name);
+    let is_ox-desk_virtual_display =
+        crate::virtual_display_manager::ox-desk_idd::is_virtual_display(&display_name);
     #[cfg(not(windows))]
-    let is_rustdesk_virtual_display = false;
-    Some(if is_rustdesk_virtual_display {
+    let is_ox-desk_virtual_display = false;
+    Some(if is_ox-desk_virtual_display {
         Resolution {
             width: 0,
             height: 0,
@@ -1069,7 +1069,7 @@ mod wayland_layout_tests {
         }]
     }
 
-    // rustdesk#15886: a video service starts, the output rotates, and a retry starts before the
+    // ox-desk#15886: a video service starts, the output rotates, and a retry starts before the
     // 1.5 s poll. The baseline is reset on both, so it cannot be the edge detector's memory.
     #[test]
     fn a_rotation_between_two_session_inits_is_still_an_edge() {
@@ -1095,7 +1095,7 @@ mod wayland_layout_tests {
         assert!(!l.edge(&upright, false, 0));
     }
 
-    // rustdesk#15886: `ensure_inited()` runs the wayland query BEFORE the capturer exists, and a
+    // ox-desk#15886: `ensure_inited()` runs the wayland query BEFORE the capturer exists, and a
     // failure there saves an EMPTY baseline. The capturer's own retry can succeed a moment later
     // and build on layout A, and that build is not blind, so nothing else records it. A rotation
     // before the first poll then had no memory to be an edge against.

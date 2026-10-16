@@ -7,7 +7,7 @@ use std::{
     process::Command,
 };
 
-const UPDATE_DMG_MOUNT_TEMPLATE: &str = "/tmp/.rustdeskmount-XXXXXX";
+const UPDATE_DMG_MOUNT_TEMPLATE: &str = "/tmp/.ox-deskmount-XXXXXX";
 
 #[derive(Debug)]
 pub(super) struct VerifiedDmg {
